@@ -1,1 +1,8 @@
 /.worktrees/
+/papers/
+/state/
+/logs/
+*.part
+__pycache__/
+*.py[cod]
+.venv/

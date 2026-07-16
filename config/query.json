@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "query_id": "llm-inference-fpga-v1",
+  "api_url": "https://export.arxiv.org/api/query",
+  "base_query": "(ti:LLM OR abs:LLM OR ti:LLMs OR abs:LLMs OR ti:\"large language model\" OR abs:\"large language model\" OR ti:\"large language models\" OR abs:\"large language models\") AND (ti:inference OR abs:inference) AND (ti:FPGA OR abs:FPGA)",
+  "page_size": 100,
+  "min_api_interval_seconds": 3.0,
+  "daily_overlap_hours": 72,
+  "cron_hour": 3,
+  "cron_minute": 17,
+  "user_agent": "LLM-inference-on-FPGA-papers/1.0 (local research collector)"
+}
