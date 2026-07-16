@@ -27,6 +27,16 @@ def create_repo(root: Path) -> None:
 
 
 class CliTests(unittest.TestCase):
+    def test_readme_documents_required_workflow(self) -> None:
+        text = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("bootstrap --all --download", text)
+        self.assertIn("sync --download-new", text)
+        self.assertIn("python3 scripts/install_cron.py --install", text)
+        self.assertIn("local research cache", text)
+        self.assertIn("https://info.arxiv.org/help/api/user-manual.html", text)
+        self.assertIn("https://info.arxiv.org/help/api/tou.html", text)
+
     def test_render_command_rewrites_readme(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
