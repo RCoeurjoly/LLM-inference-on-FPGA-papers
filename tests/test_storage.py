@@ -9,7 +9,9 @@ from paperlib.storage import (
     load_catalog,
     load_survey,
     load_watermark,
+    merge_survey_values,
     merge_survey_rows,
+    write_survey,
     write_catalog,
     write_state,
 )
@@ -76,6 +78,30 @@ class StorageTests(unittest.TestCase):
             write_catalog(path, "query-v1", {paper.key: paper})
 
             self.assertEqual(load_catalog(path), {paper.key: paper})
+
+    def test_pure_survey_merge_can_be_written_after_other_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "survey.csv"
+            original = {
+                "2401.12345": {
+                    "arxiv_id": "2401.12345",
+                    "review_status": "reviewed",
+                    "quantization": "int8",
+                    "architecture": "",
+                    "fpga_device": "",
+                    "model": "",
+                    "toolflow": "",
+                    "evidence_pages": "",
+                    "notes": "preserve",
+                }
+            }
+
+            merged = merge_survey_values(original, ["2401.12345", "2501.00001"])
+            write_survey(path, merged)
+
+            self.assertEqual(original, {"2401.12345": original["2401.12345"]})
+            self.assertEqual(load_survey(path)["2401.12345"]["notes"], "preserve")
+            self.assertEqual(load_survey(path)["2501.00001"]["quantization"], "")
 
 
 if __name__ == "__main__":

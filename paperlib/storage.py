@@ -141,7 +141,8 @@ def load_survey(path: Path) -> dict[str, dict[str, str]]:
     return rows
 
 
-def _write_survey(path: Path, rows: Mapping[str, Mapping[str, str]]) -> None:
+def write_survey(path: Path, rows: Mapping[str, Mapping[str, str]]) -> None:
+    """Atomically write complete survey rows in stable base-ID order."""
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp")
     with temporary.open("w", encoding="utf-8", newline="") as handle:
@@ -152,13 +153,24 @@ def _write_survey(path: Path, rows: Mapping[str, Mapping[str, str]]) -> None:
     temporary.replace(path)
 
 
+def merge_survey_values(
+    rows: Mapping[str, Mapping[str, str]], arxiv_ids: Iterable[str]
+) -> dict[str, dict[str, str]]:
+    """Return a copy of survey rows with blank values for unseen base IDs."""
+    merged = {
+        arxiv_id: {field: row.get(field, "") for field in SURVEY_FIELDS}
+        for arxiv_id, row in rows.items()
+    }
+    for arxiv_id in arxiv_ids:
+        merged.setdefault(arxiv_id, {field: "" for field in SURVEY_FIELDS})
+        merged[arxiv_id]["arxiv_id"] = arxiv_id
+    return merged
+
+
 def merge_survey_rows(path: Path, arxiv_ids: Iterable[str]) -> dict[str, dict[str, str]]:
     """Add blank annotations for unseen base IDs without altering existing cells."""
-    rows = load_survey(path)
-    for arxiv_id in arxiv_ids:
-        rows.setdefault(arxiv_id, {field: "" for field in SURVEY_FIELDS})
-        rows[arxiv_id]["arxiv_id"] = arxiv_id
-    _write_survey(path, rows)
+    rows = merge_survey_values(load_survey(path), arxiv_ids)
+    write_survey(path, rows)
     return rows
 
 
