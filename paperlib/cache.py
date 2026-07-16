@@ -4,6 +4,7 @@ import hashlib
 from collections.abc import Callable
 from dataclasses import replace
 from pathlib import Path
+from urllib.error import HTTPError
 
 from paperlib.models import PaperVersion, PdfCache
 
@@ -59,6 +60,11 @@ def cache_pdf(
         )
         temporary_path.replace(final_path)
         return replace(paper, cache=receipt)
+    except HTTPError as error:
+        temporary_path.unlink(missing_ok=True)
+        if error.code == 404:
+            return paper
+        raise
     except Exception:
         temporary_path.unlink(missing_ok=True)
         raise

@@ -146,7 +146,9 @@ def write_survey(path: Path, rows: Mapping[str, Mapping[str, str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp")
     with temporary.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=SURVEY_FIELDS)
+        writer = csv.DictWriter(
+            handle, fieldnames=SURVEY_FIELDS, lineterminator="\n"
+        )
         writer.writeheader()
         for arxiv_id in sorted(rows):
             writer.writerow({field: rows[arxiv_id].get(field, "") for field in SURVEY_FIELDS})

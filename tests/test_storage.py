@@ -103,6 +103,14 @@ class StorageTests(unittest.TestCase):
             self.assertEqual(load_survey(path)["2401.12345"]["notes"], "preserve")
             self.assertEqual(load_survey(path)["2501.00001"]["quantization"], "")
 
+    def test_survey_uses_lf_line_endings(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "survey.csv"
+
+            write_survey(path, merge_survey_values({}, ["2401.12345"]))
+
+            self.assertNotIn(b"\r", path.read_bytes())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@ from __future__ import annotations
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.error import HTTPError
 
 from paperlib.cache import cache_pdf
 from paperlib.models import PaperVersion
@@ -64,6 +65,19 @@ class CacheTests(unittest.TestCase):
 
             self.assertFalse((cache_dir / "2401.12345v2.pdf").exists())
             self.assertFalse((cache_dir / "2401.12345v2.pdf.part").exists())
+
+    def test_keeps_an_unavailable_pdf_uncached(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            paper = make_paper()
+
+            def fetch(url: str) -> bytes:
+                raise HTTPError(url, 404, "Not Found", None, None)
+
+            result = cache_pdf(paper, cache_dir, fetch, lambda: "now")
+
+            self.assertIsNone(result.cache)
+            self.assertFalse((cache_dir / "2401.12345v2.pdf").exists())
 
 
 if __name__ == "__main__":
