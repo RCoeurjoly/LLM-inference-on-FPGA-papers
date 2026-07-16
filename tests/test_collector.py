@@ -6,9 +6,15 @@ import unittest
 from datetime import UTC, datetime
 from pathlib import Path
 
-from paperlib.collector import bootstrap_all, sync_recent
+from paperlib.collector import bootstrap_all, download_missing, sync_recent
 from paperlib.models import FeedPage, PaperVersion
-from paperlib.storage import load_catalog, load_survey, load_watermark, write_state
+from paperlib.storage import (
+    load_catalog,
+    load_survey,
+    load_watermark,
+    write_catalog,
+    write_state,
+)
 
 
 def paper(version: int, updated_at: str) -> PaperVersion:
@@ -148,6 +154,24 @@ class CollectorTests(unittest.TestCase):
                 )
 
             self.assertEqual(load_watermark(state_path), "2026-07-16T03:17:00Z")
+
+    def test_download_missing_uses_catalog_without_discovery(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            create_repo(root)
+            source = paper(1, "2024-01-01T00:00:00Z")
+            write_catalog(root / "data/catalog.json", "query-v1", {source.key: source})
+            calls: list[str] = []
+
+            result = download_missing(
+                root,
+                pdf_fetcher=lambda url: calls.append(url) or b"%PDF-1.7\nbody",
+                now=datetime(2026, 7, 16, 3, 17, tzinfo=UTC),
+            )
+
+            self.assertEqual(calls, [source.pdf_url])
+            self.assertIsNotNone(result[source.key].cache)
+            self.assertFalse((root / "state/collector.json").exists())
 
 
 if __name__ == "__main__":

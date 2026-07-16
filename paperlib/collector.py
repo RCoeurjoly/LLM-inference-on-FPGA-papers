@@ -182,3 +182,17 @@ def sync_recent(
     newest_update = max((paper.updated_at for paper in incoming), default=_rfc3339(now))
     write_state(state_path, newest_update)
     return merged
+
+
+def download_missing(
+    repo_root: Path,
+    pdf_fetcher: Callable[[str], bytes] = _fetch_pdf,
+    now: datetime | None = None,
+) -> dict[str, PaperVersion]:
+    """Fill missing local PDF cache entries without performing API discovery."""
+    timestamp = _as_utc(now or datetime.now(UTC))
+    config = load_config(repo_root / "config/query.json")
+    papers = load_catalog(repo_root / "data/catalog.json")
+    cached = _cache_records(papers, repo_root, pdf_fetcher, _rfc3339(timestamp))
+    write_catalog(repo_root / "data/catalog.json", config.query_id, cached)
+    return cached
