@@ -12,7 +12,7 @@ FIXTURE = Path("tests/fixtures/sample_feed.xml").read_bytes()
 
 
 class ArxivTests(unittest.TestCase):
-    def test_builds_updated_date_query(self) -> None:
+    def test_builds_updated_date_query_with_spaces_for_url_encoding(self) -> None:
         query = build_search_query(
             "all:FPGA",
             "lastUpdatedDate",
@@ -21,7 +21,8 @@ class ArxivTests(unittest.TestCase):
         )
 
         self.assertIn("all:FPGA", query)
-        self.assertIn("lastUpdatedDate:[202607130000+TO+202607160000]", query)
+        self.assertIn("lastUpdatedDate:[202607130000 TO 202607160000]", query)
+        self.assertNotIn("+TO+", query)
 
     def test_parses_base_id_version_metadata_and_links(self) -> None:
         page = parse_feed(FIXTURE, "query-v1", "2026-07-16T03:17:00Z")

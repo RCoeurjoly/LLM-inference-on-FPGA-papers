@@ -54,7 +54,7 @@ def build_search_query(
     def stamp(value: datetime) -> str:
         return value.astimezone(UTC).strftime("%Y%m%d%H%M")
 
-    return f"({base_query}) AND {date_field}:[{stamp(start)}+TO+{stamp(end)}]"
+    return f"({base_query}) AND {date_field}:[{stamp(start)} TO {stamp(end)}]"
 
 
 def parse_feed(xml_bytes: bytes, query_id: str, retrieved_at: str) -> FeedPage:

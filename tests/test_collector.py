@@ -107,7 +107,7 @@ class CollectorTests(unittest.TestCase):
             )
 
             self.assertIn(
-                "lastUpdatedDate:[202607130317+TO+202607160317]", client.calls[0][0]
+                "lastUpdatedDate:[202607130317 TO 202607160317]", client.calls[0][0]
             )
             self.assertEqual(load_watermark(state_path), "2026-07-16T04:00:00Z")
 
