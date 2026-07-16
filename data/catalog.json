@@ -1,1 +1,1778 @@
-{"schema_version": 1, "query_id": "llm-inference-fpga-v1", "papers": {}}
+{
+  "papers": {
+    "2310.09949v4": {
+      "abs_url": "https://arxiv.org/abs/2310.09949v4",
+      "abstract": "A Retrieval-Augmented Language Model (RALM) combines a large language model (LLM) with a vector database to retrieve context-specific knowledge during text generation. This strategy facilitates impressive generation quality even with smaller models, thus reducing computational demands by orders of magnitude. To serve RALMs efficiently and flexibly, we propose Chameleon, a heterogeneous accelerator system integrating both LLM and vector search accelerators in a disaggregated architecture. The heterogeneity ensures efficient serving for both inference and retrieval, while the disaggregation allows independent scaling of LLM and vector search accelerators to fulfill diverse RALM requirements. Our Chameleon prototype implements vector search accelerators on FPGAs and assigns LLM inference to GPUs, with CPUs as cluster coordinators. Evaluated on various RALMs, Chameleon exhibits up to 2.16$\\times$ reduction in latency and 3.18x speedup in throughput compared to the hybrid CPU-GPU architecture. The promising results pave the way for adopting heterogeneous accelerators for not only LLM inference but also vector search in future RALM systems.",
+      "arxiv_id": "2310.09949",
+      "authors": [
+        "Wenqi Jiang",
+        "Marco Zeller",
+        "Roger Waleffe",
+        "Torsten Hoefler",
+        "Gustavo Alonso"
+      ],
+      "cache": {
+        "byte_count": 1592267,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2310.09949v4.pdf",
+        "sha256": "69f12ada1de5ccd0fc5d9e806330b936ac3cef66df6e252175c483394428e009"
+      },
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.AR",
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2310.09949v4",
+      "primary_category": "cs.LG",
+      "published_at": "2023-10-15T20:57:25Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Chameleon: a Heterogeneous and Disaggregated Accelerator System for Retrieval-Augmented Language Models",
+      "updated_at": "2025-03-24T18:01:48Z",
+      "version": 4
+    },
+    "2312.15159v2": {
+      "abs_url": "https://arxiv.org/abs/2312.15159v2",
+      "abstract": "Recent advancements in large language models (LLMs) boasting billions of parameters have generated a significant demand for efficient deployment in inference workloads. The majority of existing approaches rely on temporal architectures that reuse hardware units for different network layers and operators. However, these methods often encounter challenges in achieving low latency due to considerable memory access overhead. This paper investigates the feasibility and potential of model-specific spatial acceleration for LLM inference on FPGAs. Our approach involves the specialization of distinct hardware units for specific operators or layers, facilitating direct communication between them through a dataflow architecture while minimizing off-chip memory accesses. We introduce a comprehensive analytical model for estimating the performance of a spatial LLM accelerator, taking into account the on-chip compute and memory resources available on an FPGA. Through our analysis, we can determine the scenarios in which FPGA-based spatial acceleration can outperform its GPU-based counterpart. To enable more productive implementations of an LLM model on FPGAs, we further provide a library of high-level synthesis (HLS) kernels that are composable and reusable. This library will be made available as open-source. To validate the effectiveness of both our analytical model and HLS library, we have implemented BERT and GPT2 on an AMD Alveo U280 FPGA device. Experimental results demonstrate our approach can achieve up to 13.4x speedup when compared to previous FPGA-based accelerators for the BERT model. For GPT generative inference, we attain a 2.2x speedup compared to DFX, an FPGA overlay, in the prefill stage, while achieving a 1.9x speedup and a 5.7x improvement in energy efficiency compared to the NVIDIA A100 GPU in the decode stage.",
+      "arxiv_id": "2312.15159",
+      "authors": [
+        "Hongzheng Chen",
+        "Jiahao Zhang",
+        "Yixiao Du",
+        "Shaojie Xiang",
+        "Zichao Yue",
+        "Niansong Zhang",
+        "Yaohui Cai",
+        "Zhiru Zhang"
+      ],
+      "cache": {
+        "byte_count": 3457444,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2312.15159v2.pdf",
+        "sha256": "75a69ed82c570491fb481fa149e635695cc0c583f071e7717a21931b131754cd"
+      },
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.AR",
+        "cs.CL"
+      ],
+      "doi": "10.1145/3656177",
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2312.15159v2",
+      "primary_category": "cs.LG",
+      "published_at": "2023-12-23T04:27:06Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Understanding the Potential of FPGA-Based Spatial Acceleration for Large Language Model Inference",
+      "updated_at": "2024-04-07T06:03:02Z",
+      "version": 2
+    },
+    "2401.03868v2": {
+      "abs_url": "https://arxiv.org/abs/2401.03868v2",
+      "abstract": "Transformer-based Large Language Models (LLMs) have made a significant impact on various domains. However, LLMs' efficiency suffers from both heavy computation and memory overheads. Compression techniques like sparsification and quantization are commonly used to mitigate the gap between LLM's computation/memory overheads and hardware capacity. However, existing GPU and transformer-based accelerators cannot efficiently process compressed LLMs, due to the following unresolved challenges: low computational efficiency, underutilized memory bandwidth, and large compilation overheads. This paper proposes FlightLLM, enabling efficient LLMs inference with a complete mapping flow on FPGAs. In FlightLLM, we highlight an innovative solution that the computation and memory overhead of LLMs can be solved by utilizing FPGA-specific resources (e.g., DSP48 and heterogeneous memory hierarchy). We propose a configurable sparse DSP chain to support different sparsity patterns with high computation efficiency. Second, we propose an always-on-chip decode scheme to boost memory bandwidth with mixed-precision support. Finally, to make FlightLLM available for real-world LLMs, we propose a length adaptive compilation method to reduce the compilation overhead. Implemented on the Xilinx Alveo U280 FPGA, FlightLLM achieves 6.0$\\times$ higher energy efficiency and 1.8$\\times$ better cost efficiency against commercial GPUs (e.g., NVIDIA V100S) on modern LLMs (e.g., LLaMA2-7B) using vLLM and SmoothQuant under the batch size of one. FlightLLM beats NVIDIA A100 GPU with 1.2$\\times$ higher throughput using the latest Versal VHK158 FPGA.",
+      "arxiv_id": "2401.03868",
+      "authors": [
+        "Shulin Zeng",
+        "Jun Liu",
+        "Guohao Dai",
+        "Xinhao Yang",
+        "Tianyu Fu",
+        "Hongyi Wang",
+        "Wenheng Ma",
+        "Hanbo Sun",
+        "Shiyao Li",
+        "Zixiao Huang",
+        "Yadong Dai",
+        "Jintao Li",
+        "Zehao Wang",
+        "Ruoyu Zhang",
+        "Kairui Wen",
+        "Xuefei Ning",
+        "Yu Wang"
+      ],
+      "cache": {
+        "byte_count": 2170642,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2401.03868v2.pdf",
+        "sha256": "e0d38c8754516973d62749c846ebe63ea3984b569a1613b98340ef13249fd4da"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2401.03868v2",
+      "primary_category": "cs.AR",
+      "published_at": "2024-01-08T13:00:53Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "FlightLLM: Efficient Large Language Model Inference with a Complete Mapping Flow on FPGAs",
+      "updated_at": "2024-01-09T06:47:46Z",
+      "version": 2
+    },
+    "2405.00738v1": {
+      "abs_url": "https://arxiv.org/abs/2405.00738v1",
+      "abstract": "Graphics Processing Units (GPUs) have become the leading hardware accelerator for deep learning applications and are used widely in training and inference of transformers; transformers have achieved state-of-the-art performance in many areas of machine learning and are especially used in most modern Large Language Models (LLMs). However, GPUs require large amounts of energy, which poses environmental concerns, demands high operational costs, and causes GPUs to be unsuitable for edge computing. We develop an accelerator for transformers, namely, Llama 2, an open-source state-of-the-art LLM, using high level synthesis (HLS) on Field Programmable Gate Arrays (FPGAs). HLS allows us to rapidly prototype FPGA designs without writing code at the register-transfer level (RTL). We name our method HLSTransform, and the FPGA designs we synthesize with HLS achieve up to a 12.75x reduction and 8.25x reduction in energy used per token on the Xilinx Virtex UltraScale+ VU9P FPGA compared to an Intel Xeon Broadwell E5-2686 v4 CPU and NVIDIA RTX 3090 GPU respectively, while increasing inference speeds by up to 2.46x compared to CPU and maintaining 0.53x the speed of an RTX 3090 GPU despite the GPU's 4 times higher base clock rate. With the lack of existing open-source FPGA accelerators for transformers, we open-source our code and document our steps for synthesis. We hope this work will serve as a step in democratizing the use of FPGAs in transformer inference and inspire research into energy-efficient inference methods as a whole. The code can be found on https://github.com/HLSTransform/submission.",
+      "arxiv_id": "2405.00738",
+      "authors": [
+        "Andy He",
+        "Darren Key",
+        "Mason Bulling",
+        "Andrew Chang",
+        "Skyler Shapiro",
+        "Everett Lee"
+      ],
+      "cache": {
+        "byte_count": 563456,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2405.00738v1.pdf",
+        "sha256": "d4d5f70aefc7116006fb7d87d3db35824d057ada6b4225ad6dcff7a1130096fc"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2405.00738v1",
+      "primary_category": "cs.AR",
+      "published_at": "2024-04-29T21:26:06Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "HLSTransform: Energy-Efficient Llama 2 Inference on FPGAs Via High Level Synthesis",
+      "updated_at": "2024-04-29T21:26:06Z",
+      "version": 1
+    },
+    "2408.00462v1": {
+      "abs_url": "https://arxiv.org/abs/2408.00462v1",
+      "abstract": "The increase in open-source availability of Large Language Models (LLMs) has enabled users to deploy them on more and more resource-constrained edge devices to reduce reliance on network connections and provide more privacy. However, the high computation and memory demands of LLMs make their execution on resource-constrained edge devices challenging and inefficient. To address this issue, designing new and efficient edge accelerators for LLM inference is crucial. FPGA-based accelerators are ideal for LLM acceleration due to their reconfigurability, as they enable model-specific optimizations and higher performance per watt. However, creating and integrating FPGA-based accelerators for LLMs (particularly on edge devices) has proven challenging, mainly due to the limited hardware design flows for LLMs in existing FPGA platforms. To tackle this issue, in this paper we first propose a new design platform, named SECDA-LLM, that utilizes the SECDA methodology to streamline the process of designing, integrating, and deploying efficient FPGA-based LLM accelerators for the llama.cpp inference framework. We then demonstrate, through a case study, the potential benefits of SECDA-LLM by creating a new MatMul accelerator that supports block floating point quantized operations for LLMs. Our initial accelerator design, deployed on the PYNQ-Z1 board, reduces latency 1.7 seconds per token or ~2 seconds per word) by 11x over the dual-core Arm NEON-based CPU execution for the TinyLlama model.",
+      "arxiv_id": "2408.00462",
+      "authors": [
+        "Jude Haris",
+        "Rappy Saha",
+        "Wenhao Hu",
+        "Jos\u00e9 Cano"
+      ],
+      "cache": {
+        "byte_count": 937757,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2408.00462v1.pdf",
+        "sha256": "d78ea89f94fab1034d11eb9823e2e8710b1e8db3518afe1ab958836ebd165809"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2408.00462v1",
+      "primary_category": "cs.AR",
+      "published_at": "2024-08-01T11:06:05Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Designing Efficient LLM Accelerators for Edge Devices",
+      "updated_at": "2024-08-01T11:06:05Z",
+      "version": 1
+    },
+    "2409.00661v1": {
+      "abs_url": "https://arxiv.org/abs/2409.00661v1",
+      "abstract": "Considering the high-performance and low-power requirements of edge AI, this study designs a specialized instruction set processor for edge AI based on the RISC-V instruction set architecture, addressing practical issues in digital signal processing for edge devices. This design enhances the execution efficiency of edge AI and reduces its energy consumption with limited hardware overhead, meeting the demands for efficient large language model (LLM) inference computation in edge AI applications. The main contributions of this paper are as follows: For the characteristics of large language models, custom instructions were extended based on the RISC-V instruction set to perform vector dot product calculations, accelerating the computation of large language models on dedicated vector dot product acceleration hardware. Based on the open-source high-performance RISC-V processor core XiangShan Nanhu architecture, the vector dot product specialized instruction set processor Nanhu-vdot was implemented, which adds vector dot product calculation units and pipeline processing logic on top of the XiangShan Nanhu.The Nanhu-vdot underwent FPGA hardware testing, achieving over four times the speed of scalar methods in vector dot product computation. Using a hardware-software co-design approach for second-generation Generative Pre-Trained Transformer (GPT-2) model inference, the speed improved by approximately 30% compared to pure software implementation with almost no additional consumption of hardware resources and power consumption.",
+      "arxiv_id": "2409.00661",
+      "authors": [
+        "Xu-Hao Chen",
+        "Si-Peng Hu",
+        "Hong-Chao Liu",
+        "Bo-Ran Liu",
+        "Dan Tang",
+        "Di Zhao"
+      ],
+      "cache": {
+        "byte_count": 741721,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2409.00661v1.pdf",
+        "sha256": "5a86cbf7e409b775e6b559e98d7d9305d851c45f92ca1f0a0e4cb5e731f52097"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2409.00661v1",
+      "primary_category": "cs.AR",
+      "published_at": "2024-09-01T08:27:00Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Research on LLM Acceleration Using the High-Performance RISC-V Processor \"Xiangshan\" (Nanhu Version) Based on the Open-Source Matrix Instruction Set Extension (Vector Dot Product)",
+      "updated_at": "2024-09-01T08:27:00Z",
+      "version": 1
+    },
+    "2409.11424v1": {
+      "abs_url": "https://arxiv.org/abs/2409.11424v1",
+      "abstract": "Large language models (LLMs) have demonstrated remarkable abilities in natural language processing. However, their deployment on resource-constrained embedded devices remains difficult due to memory and computational demands. In this paper, we present an FPGA-based accelerator designed to improve LLM inference performance on embedded FPGAs. We employ post-training quantization to reduce model size and optimize for off-chip memory bandwidth. Our design features asynchronous computation and a fully pipelined accelerator for matrix-vector multiplication. Experiments of the TinyLlama 1.1B model on a Xilinx ZCU102 platform show a 14.3-15.8x speedup and a 6.1x power efficiency improvement over running exclusively on ZCU102 processing system (PS).",
+      "arxiv_id": "2409.11424",
+      "authors": [
+        "Han Xu",
+        "Yutong Li",
+        "Shihao Ji"
+      ],
+      "cache": {
+        "byte_count": 460602,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2409.11424v1.pdf",
+        "sha256": "863004facf1b502140ad2d0c556897f42d8773d2218ed83ee84ca5a7ed574796"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2409.11424v1",
+      "primary_category": "cs.AR",
+      "published_at": "2024-09-12T17:53:37Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "LlamaF: An Efficient Llama2 Architecture Accelerator on Embedded FPGAs",
+      "updated_at": "2024-09-12T17:53:37Z",
+      "version": 1
+    },
+    "2410.04466v4": {
+      "abs_url": "https://arxiv.org/abs/2410.04466v4",
+      "abstract": "Large Language Models (LLMs) have demonstrated remarkable capabilities across various fields, from natural language understanding to text generation. Compared to non-generative LLMs like BERT and DeBERTa, generative LLMs like GPT series and Llama series are currently the main focus due to their superior algorithmic performance. The advancements in generative LLMs are closely intertwined with the development of hardware capabilities. Various hardware platforms exhibit distinct hardware characteristics, which can help improve LLM inference performance. Therefore, this paper comprehensively surveys efficient generative LLM inference on different hardware platforms. First, we provide an overview of the algorithm architecture of mainstream generative LLMs and delve into the inference process. Then, we summarize different optimization methods for different platforms such as CPU, GPU, FPGA, ASIC, and PIM/NDP, and provide inference results for generative LLMs. Furthermore, we perform a qualitative and quantitative comparison of inference performance with batch sizes 1 and 8 on different hardware platforms by considering hardware power consumption, absolute inference speed (tokens/s), and energy efficiency (tokens/J). We compare the performance of the same optimization methods across different hardware platforms, the performance across different hardware platforms, and the performance of different methods on the same hardware platform. This provides a systematic and comprehensive summary of existing inference acceleration work by integrating software optimization methods and hardware platforms. We point out that three trends (multimodality, inference-time compute, and higher inference energy efficiency) are promising to redefine the capabilities of edge artificial intelligence systems. Our project is available at https://dai.sjtu.edu.cn/project.html.",
+      "arxiv_id": "2410.04466",
+      "authors": [
+        "Jinhao Li",
+        "Jiaming Xu",
+        "Shan Huang",
+        "Yonghua Chen",
+        "Wen Li",
+        "Jun Liu",
+        "Yaoxiu Lian",
+        "Jiayi Pan",
+        "Li Ding",
+        "Hao Zhou",
+        "Yu Wang",
+        "Guohao Dai"
+      ],
+      "cache": {
+        "byte_count": 3076172,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2410.04466v4.pdf",
+        "sha256": "4b333f4626217c98a866f2f0244ba3a7b888c17153d7f9d1f0088a46e8f2fea3"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2410.04466v4",
+      "primary_category": "cs.AR",
+      "published_at": "2024-10-06T12:42:04Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Large Language Model Inference Acceleration: A Comprehensive Hardware Perspective",
+      "updated_at": "2025-06-13T12:20:54Z",
+      "version": 4
+    },
+    "2410.10714v2": {
+      "abs_url": "https://arxiv.org/abs/2410.10714v2",
+      "abstract": "Large Language Models (LLMs) have transformed natural language processing, but face significant challenges in widespread deployment due to their high runtime cost. In this paper, we introduce SeedLM, a novel post-training compression method that uses seeds of pseudo-random generators to encode and compress model weights. Specifically, for each block of weights, we find a seed that is fed into a Linear Feedback Shift Register (LFSR) during inference to efficiently generate a random matrix. This matrix is then linearly combined with compressed coefficients to reconstruct the weight block. SeedLM reduces memory access and leverages idle compute cycles during inference, effectively speeding up memory-bound tasks by trading compute for fewer memory accesses. Unlike state-of-the-art compression methods that rely on calibration data, our approach is data-free and generalizes well across diverse tasks. Our experiments with Llama 3 70B, which is particularly challenging to compress, show that SeedLM achieves significantly better zero-shot accuracy retention at 4- and 3-bit than state-of-the-art techniques, while maintaining performance comparable to FP16 baselines. Additionally, FPGA-based tests demonstrate that 4-bit SeedLM, as model size increases to 70B, approaches a 4x speed-up over an FP16 Llama 2/3 baseline.",
+      "arxiv_id": "2410.10714",
+      "authors": [
+        "Rasoul Shafipour",
+        "David Harrison",
+        "Maxwell Horton",
+        "Jeffrey Marker",
+        "Houman Bedayat",
+        "Sachin Mehta",
+        "Mohammad Rastegari",
+        "Mahyar Najibi",
+        "Saman Naderiparizi"
+      ],
+      "cache": {
+        "byte_count": 433486,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2410.10714v2.pdf",
+        "sha256": "445816d21cfc5353d247e410625fe62f9ac3ed9585efbf0a4ca769c969f7ca9c"
+      },
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2410.10714v2",
+      "primary_category": "cs.LG",
+      "published_at": "2024-10-14T16:57:23Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "SeedLM: Compressing LLM Weights into Seeds of Pseudo-Random Generators",
+      "updated_at": "2024-10-16T00:11:57Z",
+      "version": 2
+    },
+    "2410.15008v1": {
+      "abs_url": "https://arxiv.org/abs/2410.15008v1",
+      "abstract": "Accelerating end-to-end inference of transformer-based large language models (LLMs) is a critical component of AI services in datacenters. However, diverse compute characteristics of end-to-end LLM inference present challenges as previously proposed accelerators only address certain operations or stages (e.g., self-attention, generation stage, etc.). To address the unique challenges of accelerating end-to-end inference, we propose IANUS -- Integrated Accelerator based on NPU-PIM Unified Memory System. IANUS is a domain-specific system architecture that combines a Neural Processing Unit (NPU) with a Processing-in-Memory (PIM) to leverage both the NPU's high computation throughput and the PIM's high effective memory bandwidth. In particular, IANUS employs a unified main memory system where the PIM memory is used both for PIM operations and for NPU's main memory. The unified main memory system ensures that memory capacity is efficiently utilized and the movement of shared data between NPU and PIM is minimized. However, it introduces new challenges since normal memory accesses and PIM computations cannot be performed simultaneously. Thus, we propose novel PIM Access Scheduling that manages normal memory accesses and PIM computations through workload mapping and scheduling across the PIM and the NPU. Our detailed simulation evaluations show that IANUS improves the performance of GPT-2 by 6.2$\\times$ and 3.2$\\times$, on average, compared to the NVIDIA A100 GPU and the state-of-the-art accelerator. As a proof-of-concept, we develop a prototype of IANUS with a commercial PIM, NPU, and an FPGA-based PIM controller to demonstrate the feasibility of IANUS.",
+      "arxiv_id": "2410.15008",
+      "authors": [
+        "Minseok Seo",
+        "Xuan Truong Nguyen",
+        "Seok Joong Hwang",
+        "Yongkee Kwon",
+        "Guhyun Kim",
+        "Chanwook Park",
+        "Ilkon Kim",
+        "Jaehan Park",
+        "Jeongbin Kim",
+        "Woojae Shin",
+        "Jongsoon Won",
+        "Haerang Choi",
+        "Kyuyoung Kim",
+        "Daehan Kwon",
+        "Chunseok Jeong",
+        "Sangheon Lee",
+        "Yongseok Choi",
+        "Wooseok Byun",
+        "Seungcheol Baek",
+        "Hyuk-Jae Lee",
+        "John Kim"
+      ],
+      "cache": {
+        "byte_count": 1467645,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2410.15008v1.pdf",
+        "sha256": "8784eb97fcc319f2f850345db59529c5050b58ec0167c9ff8cb39a33e46c253a"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": "10.1145/3620666.3651324",
+      "journal_ref": "ASPLOS 2024",
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2410.15008v1",
+      "primary_category": "cs.AR",
+      "published_at": "2024-10-19T06:43:20Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "IANUS: Integrated Accelerator based on NPU-PIM Unified Memory System",
+      "updated_at": "2024-10-19T06:43:20Z",
+      "version": 1
+    },
+    "2501.14512v1": {
+      "abs_url": "https://arxiv.org/abs/2501.14512v1",
+      "abstract": "Neural networks have become a fundamental component of numerous practical applications, and their implementations, which are often accelerated by hardware, are integrated into all types of real-world physical devices. User interactions with neural networks on hardware accelerators are commonly considered privacy-sensitive. Substantial efforts have been made to uncover vulnerabilities and enhance privacy protection at the level of machine learning algorithms, including membership inference attacks, differential privacy, and federated learning. However, neural networks are ultimately implemented and deployed on physical devices, and current research pays comparatively less attention to privacy protection at the implementation level. In this paper, we introduce a generic physical side-channel attack, ScaAR, that extracts user interactions with neural networks by leveraging electromagnetic (EM) emissions of physical devices. Our proposed attack is implementation-agnostic, meaning it does not require the adversary to possess detailed knowledge of the hardware or software implementations, thanks to the capabilities of deep learning-based side-channel analysis (DLSCA). Experimental results demonstrate that, through the EM side channel, ScaAR can effectively extract the class label of user interactions with neural classifiers, including inputs and outputs, on the AMD-Xilinx MPSoC ZCU104 FPGA and Raspberry Pi 3 B. In addition, for the first time, we provide side-channel analysis on edge Large Language Model (LLM) implementations on the Raspberry Pi 5, showing that EM side channel leaks interaction data, and different LLM tokens can be distinguishable from the EM traces.",
+      "arxiv_id": "2501.14512",
+      "authors": [
+        "Zhuoran Liu",
+        "Senna van Hoek",
+        "P\u00e9ter Horv\u00e1th",
+        "Dirk Lauret",
+        "Xiaoyun Xu",
+        "Lejla Batina"
+      ],
+      "cache": {
+        "byte_count": 3957979,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2501.14512v1.pdf",
+        "sha256": "8035ba895a16fb2995917d80847234dc9648f81f2c75a7436b2d2c8bf19fb83d"
+      },
+      "categories": [
+        "cs.CR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2501.14512v1",
+      "primary_category": "cs.CR",
+      "published_at": "2025-01-24T14:15:51Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Real-world Edge Neural Network Implementations Leak Private Interactions Through Physical Side Channel",
+      "updated_at": "2025-01-24T14:15:51Z",
+      "version": 1
+    },
+    "2501.19135v1": {
+      "abs_url": "https://arxiv.org/abs/2501.19135v1",
+      "abstract": "Large language models (LLMs) are both storage-intensive and computation-intensive, posing significant challenges when deployed on resource-constrained hardware. As linear layers in LLMs are mainly resource consuming parts, this paper develops a tensor-train decomposition (TTD) for LLMs with a further hardware implementation on FPGA. TTD compression is applied to the linear layers in ChatGLM3-6B and LLaMA2-7B models with compression ratios (CRs) for the whole network 1.94$\\times$ and 1.60$\\times$, respectively. The compressed LLMs are further implemented on FPGA hardware within a highly efficient group vector systolic array (GVSA) architecture, which has DSP-shared parallel vector PEs for TTD inference, as well as optimized data communication in the accelerator. Experimental results show that the corresponding TTD based LLM accelerator implemented on FPGA achieves 1.45$\\times$ and 1.57$\\times$ reduction in first token delay for ChatGLM3-6B and LLaMA2-7B models, respectively.",
+      "arxiv_id": "2501.19135",
+      "authors": [
+        "Sixiao Huang",
+        "Tintin Wang",
+        "Ang Li",
+        "Ao Shen",
+        "Kai Li",
+        "Keyao Jiang",
+        "Mingqiang Huang",
+        "Hao Yu"
+      ],
+      "cache": {
+        "byte_count": 515877,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2501.19135v1.pdf",
+        "sha256": "f5537770a482adb8996867a7ef57a9358263195f3d58f81f019806bb048d5aeb"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2501.19135v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-01-31T13:45:31Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "A Tensor-Train Decomposition based Compression of LLMs on Group Vector Systolic Accelerator",
+      "updated_at": "2025-01-31T13:45:31Z",
+      "version": 1
+    },
+    "2502.00026v2": {
+      "abs_url": "https://arxiv.org/abs/2502.00026v2",
+      "abstract": "The substantial computational and memory demands of Large Language Models (LLMs) hinder their deployment. Block Floating Point (BFP) has proven effective in accelerating linear operations, a cornerstone of LLM workloads. However, as sequence lengths grow, nonlinear operations, such as Attention, increasingly become performance bottlenecks due to their quadratic computational complexity. These nonlinear operations are predominantly executed using inefficient floating-point formats, which renders the system challenging to optimize software efficiency and hardware overhead. In this paper, we delve into the limitations and potential of applying BFP to nonlinear operations. Given our findings, we introduce a hardware-software co-design framework (DB-Attn), including: (i) DBFP, an advanced BFP version, overcomes nonlinear operation challenges with a pivot-focus strategy for diverse data and an adaptive grouping strategy for flexible exponent sharing. (ii) DH-LUT, a novel lookup table algorithm dedicated to accelerating nonlinear operations with DBFP format. (iii) An RTL-level DBFP-based engine is implemented to support DB-Attn, applicable to FPGA and ASIC. Results show that DB-Attn provides significant performance improvements with negligible accuracy loss, achieving 74% GPU speedup on Softmax of LLaMA and 10x low overhead performance improvement over SOTA designs.",
+      "arxiv_id": "2502.00026",
+      "authors": [
+        "Hui Wang",
+        "Yuan Cheng",
+        "Xiaomeng Han",
+        "Zhengpeng Zhao",
+        "Dawei Yang",
+        "Zhe Jiang"
+      ],
+      "cache": {
+        "byte_count": 691455,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2502.00026v2.pdf",
+        "sha256": "25375c05b86a920846336db56abffea501f3591949fb02b3d123763940194fe6"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2502.00026v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-01-21T17:10:52Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Pushing the Limits of BFP on Narrow Precision LLM Inference",
+      "updated_at": "2025-02-07T12:23:59Z",
+      "version": 2
+    },
+    "2502.10659v1": {
+      "abs_url": "https://arxiv.org/abs/2502.10659v1",
+      "abstract": "The extremely high computational and storage demands of large language models have excluded most edge devices, which were widely used for efficient machine learning, from being viable options. A typical edge device usually only has 4GB of memory capacity and a bandwidth of less than 20GB/s, while a large language model quantized to 4-bit precision with 7B parameters already requires 3.5GB of capacity, and its decoding process is purely bandwidth-bound. In this paper, we aim to explore these limits by proposing a hardware accelerator for large language model (LLM) inference on the Zynq-based KV260 platform, equipped with 4GB of 64-bit 2400Mbps DDR4 memory. We successfully deploy a LLaMA2-7B model, achieving a decoding speed of around 5 token/s, utilizing 93.3% of the memory capacity and reaching 85% decoding speed of the theoretical memory bandwidth limit. To fully reserve the memory capacity for model weights and key-value cache, we develop the system in a bare-metal environment without an operating system. To fully reserve the bandwidth for model weight transfers, we implement a customized dataflow with an operator fusion pipeline and propose a data arrangement format that can maximize the data transaction efficiency. This research marks the first attempt to deploy a 7B level LLM on a standalone embedded field programmable gate array (FPGA) device. It provides key insights into efficient LLM inference on embedded FPGA devices and provides guidelines for future architecture design.",
+      "arxiv_id": "2502.10659",
+      "authors": [
+        "Jindong Li",
+        "Tenglong Li",
+        "Guobin Shen",
+        "Dongcheng Zhao",
+        "Qian Zhang",
+        "Yi Zeng"
+      ],
+      "cache": {
+        "byte_count": 859908,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2502.10659v1.pdf",
+        "sha256": "56f87fc2a5c31e8ceddab7c4319d4fc44cff1d76f09b6b4877ed4423ab296072"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2502.10659v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-02-15T03:56:22Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Pushing up to the Limit of Memory Bandwidth and Capacity Utilization for Efficient LLM Decoding on Embedded FPGA",
+      "updated_at": "2025-02-15T03:56:22Z",
+      "version": 1
+    },
+    "2502.15260v2": {
+      "abs_url": "https://arxiv.org/abs/2502.15260v2",
+      "abstract": "State space models (SSMs) like Mamba have recently attracted much attention. Compared to Transformer-based large language models (LLMs), Mamba achieves linear computation complexity with the sequence length and demonstrates superior performance. However, Mamba is hard to accelerate due to the scattered activation outliers and the complex computation dependency, rendering existing LLM accelerators inefficient. In this paper, we propose LightMamba that co-designs the quantization algorithm and FPGA accelerator architecture for efficient Mamba inference. We first propose an FPGA-friendly post-training quantization algorithm that features rotation-assisted quantization and power-of-two SSM quantization to reduce the majority of computation to 4-bit. We further design an FPGA accelerator that partially unrolls the Mamba computation to balance the efficiency and hardware costs. Through computation reordering as well as fine-grained tiling and fusion, the hardware utilization and memory efficiency of the accelerator get drastically improved. We implement LightMamba on Xilinx Versal VCK190 FPGA and achieve 4.65x to 6.06x higher energy efficiency over the GPU baseline. When evaluated on Alveo U280 FPGA, LightMamba reaches 93 tokens/s, which is 1.43x that of the GPU baseline. Our code is available at https://github.com/PKU-SEC-Lab/LightMamba.",
+      "arxiv_id": "2502.15260",
+      "authors": [
+        "Renjie Wei",
+        "Songqiang Xu",
+        "Linfeng Zhong",
+        "Zebin Yang",
+        "Qingyu Guo",
+        "Yuan Wang",
+        "Runsheng Wang",
+        "Meng Li"
+      ],
+      "cache": {
+        "byte_count": 3367020,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2502.15260v2.pdf",
+        "sha256": "b2f47583ba25d22b9dc697acebebf544098359fe4869b2d4b4be3f8142c0b849"
+      },
+      "categories": [
+        "cs.CL"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2502.15260v2",
+      "primary_category": "cs.CL",
+      "published_at": "2025-02-21T07:23:23Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "LightMamba: Efficient Mamba Acceleration on FPGA with Quantization and Hardware Co-design",
+      "updated_at": "2025-10-10T11:26:17Z",
+      "version": 2
+    },
+    "2502.16473v2": {
+      "abs_url": "https://arxiv.org/abs/2502.16473v2",
+      "abstract": "Deploying Large Language Models (LLMs) efficiently on edge devices is often constrained by limited memory capacity and high power consumption. Low-bit quantization methods, particularly ternary quantization, have demonstrated significant potential in preserving model accuracy while substantially decreasing memory footprint and computational costs. However, existing general-purpose architectures and accelerators have not fully exploited the advantages of low-bit quantization due to insufficient specialized hardware support. We introduce TerEffic, an FPGA-based architecture tailored for ternary-quantized LLM inference. The proposed system offers flexibility through reconfigurable hardware to meet various system requirements. We evaluated two representative configurations: a fully on-chip design that stores all weights within on-chip memories, scaling out using multiple FPGAs, and an HBM-assisted design capable of accommodating larger models on a single FPGA board. Experimental results demonstrate significant performance and energy efficiency improvements. For single-batch inference on a 370 M-parameter model, our fully on-chip architecture achieves 16,300 tokens/second, delivering a throughput 192 times higher than NVIDIA Jetson Orin Nano with a power efficiency of 455 tokens/second/W, marking a 19-fold improvement. The HBM-assisted architecture processes 727 tokens/second for a larger 2.7B-parameter model, which is 3 times of the throughput of NVIDIA A100, while consuming only 46W, resulting in a power efficiency of 16 tokens/second/W, an 8-fold improvement over the A100.",
+      "arxiv_id": "2502.16473",
+      "authors": [
+        "Chenyang Yin",
+        "Zhenyu Bai",
+        "Pranav Venkatram",
+        "Shivam Aggarwal",
+        "Zhaoying Li",
+        "Tulika Mitra"
+      ],
+      "cache": {
+        "byte_count": 1225332,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2502.16473v2.pdf",
+        "sha256": "56625cc3468ae5d9de4eba7f39d3c78f794cc19df815288298f0dce1c6a0464d"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2502.16473v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-02-23T07:16:51Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "TerEffic: Highly Efficient Ternary LLM Inference on FPGA",
+      "updated_at": "2025-05-01T05:05:03Z",
+      "version": 2
+    },
+    "2503.16731v3": {
+      "abs_url": "https://arxiv.org/abs/2503.16731v3",
+      "abstract": "Transformer-based large language models (LLMs) rely heavily on intensive matrix multiplications for attention and feed-forward layers, with the Q, K, and V linear projections in the Multi-Head Self-Attention (MHA) module constituting a decisive performance bottleneck. In this work, we introduce a highly optimized tiled matrix multiplication accelerator on a resource-constrained Xilinx KV260 FPGA that not only addresses this challenge but sets a new standard for efficiency and performance. Our design exploits persistent on-chip storage, a robust two-level tiling strategy for maximal data reuse, and a systolic-like unrolled compute engine that together deliver unparalleled speed and energy efficiency. Integrated with DistilBERT for Q, K, and V projections, our accelerator achieves an unequivocal 7x speedup over ARM CPU implementations (PyTorch) and an extraordinary 200x improvement over naive NumPy, reaching a throughput of up to 3.1~GFLOPs for matrix multiplications on (64,768) x (768,3072) matrices while operating at a conservative 100 MHz. These results decisively demonstrate the transformative potential of FPGA-based acceleration for critical Transformer operations, paving the way for scalable and energy-efficient deep learning inference on edge devices.",
+      "arxiv_id": "2503.16731",
+      "authors": [
+        "Richie Li",
+        "Sicheng Chen"
+      ],
+      "cache": {
+        "byte_count": 668549,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2503.16731v3.pdf",
+        "sha256": "4ba5241559e66e8d0fee5ab7e80ed31d8b9462f117ef4fce73d0e905a837d61a"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2503.16731v3",
+      "primary_category": "cs.AR",
+      "published_at": "2025-03-20T22:15:42Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Design and Implementation of an FPGA-Based Hardware Accelerator for Transformer",
+      "updated_at": "2025-05-20T20:28:55Z",
+      "version": 3
+    },
+    "2504.09561v1": {
+      "abs_url": "https://arxiv.org/abs/2504.09561v1",
+      "abstract": "In this paper, we propose LoopLynx, a scalable dataflow architecture for efficient LLM inference that optimizes FPGA usage through a hybrid spatial-temporal design. The design of LoopLynx incorporates a hybrid temporal-spatial architecture, where computationally intensive operators are implemented as large dataflow kernels. This achieves high throughput similar to spatial architecture, and organizing and reusing these kernels in a temporal way together enhances FPGA peak performance. Furthermore, to overcome the resource limitations of a single device, we provide a multi-FPGA distributed architecture that overlaps and hides all data transfers so that the distributed accelerators are fully utilized. By doing so, LoopLynx can be effectively scaled to multiple devices to further explore model parallelism for large-scale LLM inference. Evaluation of GPT-2 model demonstrates that LoopLynx can achieve comparable performance to state-of-the-art single FPGA-based accelerations. In addition, compared to Nvidia A100, our accelerator with a dual-FPGA configuration delivers a 2.52x speed-up in inference latency while consuming only 48.1% of the energy.",
+      "arxiv_id": "2504.09561",
+      "authors": [
+        "Jianing Zheng",
+        "Gang Chen"
+      ],
+      "cache": {
+        "byte_count": 2606688,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2504.09561v1.pdf",
+        "sha256": "ec1414a11856842e6ae5bc705891fed12649b8ad422e464b6da5bd0b6fd2e937"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2504.09561v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-04-13T13:23:14Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "LoopLynx: A Scalable Dataflow Architecture for Efficient LLM Inference",
+      "updated_at": "2025-04-13T13:23:14Z",
+      "version": 1
+    },
+    "2504.16112v2": {
+      "abs_url": "https://arxiv.org/abs/2504.16112v2",
+      "abstract": "The attention layer, a core component of Transformer-based LLMs, brings out inefficiencies in current GPU systems due to its low operational intensity and the substantial memory requirements of KV caches. We propose a High-bandwidth Processing Unit (HPU), a memoryintensive co-processor that enhances GPU resource utilization during large-batched LLM inference. By offloading memory-bound operations, the HPU allows the GPU to focus on compute-intensive tasks, increasing overall efficiency. Also, the HPU, as an add-on card, scales out to accommodate surging memory demands driven by large batch sizes and extended sequence lengths. In this paper, we show the HPU prototype implemented with PCIe-based FPGA cards mounted on a GPU system. Our novel GPU-HPU heterogeneous system demonstrates up to 4.1x performance gains and 4.6x energy efficiency improvements over a GPUonly system, providing scalability without increasing the number of GPUs.",
+      "arxiv_id": "2504.16112",
+      "authors": [
+        "Myunghyun Rhee",
+        "Joonseop Sim",
+        "Taeyoung Ahn",
+        "Seungyong Lee",
+        "Daegun Yoon",
+        "Euiseok Kim",
+        "Kyoung Park",
+        "Youngpyo Joo",
+        "Hoshik Kim"
+      ],
+      "cache": {
+        "byte_count": 4689734,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2504.16112v2.pdf",
+        "sha256": "213bc5f4839143796fc7f26ab61a4de490f60adccd62dea250305148fa88d733"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI",
+        "cs.CL",
+        "cs.DC"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2504.16112v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-04-18T03:31:08Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "HPU: High-Bandwidth Processing Unit for Scalable, Cost-effective LLM Inference via GPU Co-processing",
+      "updated_at": "2025-12-17T21:40:17Z",
+      "version": 2
+    },
+    "2504.16266v2": {
+      "abs_url": "https://arxiv.org/abs/2504.16266v2",
+      "abstract": "Deploying large language models (LLMs) on edge platforms is challenged by their high computational and memory demands. Although recent low-bit quantization methods (e.g., BitNet, DeepSeek) compress weights to as little as 1.58 bits with minimal accuracy loss, edge deployment is still constrained by limited on-chip resources, power budgets, and the often-neglected latency of the prefill phase. We present TeLLMe, the first ternary LLM accelerator for low-power FPGAs (e.g., AMD KV260) that fully supports both prefill and autoregressive decoding using 1.58-bit weights and 8-bit activations. Our contributions include: (1) a table-lookup matrix engine for ternary matmul that merges grouped activations with online precomputation to minimize resource use; (2) a fused, bandwidth-efficient attention module featuring a reversed reordering scheme to accelerate prefill; and (3) a tightly integrated normalization and quantization--dequantization unit optimized for ultra-low-bit inference. Under a 7W power budget, TeLLMe delivers up to 9 tokens/s throughput over 1,024-token contexts and prefill latencies of 0.55--1.15 s for 64--128 token prompts, marking a significant energy-efficiency advance and establishing a new edge FPGA benchmark for generative AI.",
+      "arxiv_id": "2504.16266",
+      "authors": [
+        "Ye Qiao",
+        "Zhiheng Chen",
+        "Yifan Zhang",
+        "Yian Wang",
+        "Sitao Huang"
+      ],
+      "cache": {
+        "byte_count": 2264233,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2504.16266v2.pdf",
+        "sha256": "9e4ecda5d05cebf946e014f071dd1c7935092d022b5b36fa74bb15254eab6b34"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2504.16266v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-04-22T21:00:58Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "TeLLMe: An Energy-Efficient Ternary LLM Accelerator for Prefilling and Decoding on Edge FPGAs",
+      "updated_at": "2025-04-24T18:14:11Z",
+      "version": 2
+    },
+    "2504.17376v1": {
+      "abs_url": "https://arxiv.org/abs/2504.17376v1",
+      "abstract": "Transformer-based Large Language Models (LLMs) have significantly advanced AI capabilities but pose considerable challenges for deployment on edge devices due to high computational demands, memory bandwidth constraints, and energy consumption. This paper addresses these challenges by presenting an efficient framework for deploying the Qwen2.5-0.5B model on the Xilinx Kria KV260 edge platform, a heterogeneous system integrating an ARM Cortex-A53 CPU with reconfigurable FPGA logic. Leveraging Activation-aware Weight Quantization (AWQ) with FPGA-accelerated execution pipelines, the proposed approach enhances both model compression rate and system throughput. Additionally, we propose a hybrid execution strategy that intelligently offloads compute-intensive operations to the FPGA while utilizing the CPU for lighter tasks, effectively balancing the computational workload and maximizing overall performance. Our framework achieves a model compression rate of 55.08% compared to the original model and produces output at a rate of 5.1 tokens per second, outperforming the baseline performance of 2.8 tokens per second.",
+      "arxiv_id": "2504.17376",
+      "authors": [
+        "Maoyang Xiang",
+        "Ramesh Fernando",
+        "Bo Wang"
+      ],
+      "cache": {
+        "byte_count": 970618,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2504.17376v1.pdf",
+        "sha256": "9598e3dae377a1c5e9549f9008db106b08a36a47dd84f365ac2bb664527967c9"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2504.17376v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-04-24T08:50:01Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "On-Device Qwen2.5: Efficient LLM Inference with Model Compression and Hardware Acceleration",
+      "updated_at": "2025-04-24T08:50:01Z",
+      "version": 1
+    },
+    "2505.03745v1": {
+      "abs_url": "https://arxiv.org/abs/2505.03745v1",
+      "abstract": "Recently, large language models (LLMs) have achieved huge success in the natural language processing (NLP) field, driving a growing demand to extend their deployment from the cloud to edge devices. However, deploying LLMs on resource-constrained edge devices poses significant challenges, including (1) intensive computations and huge model sizes, (2) great memory and bandwidth demands introduced by the autoregressive generation process, and (3) limited scalability for handling long sequences. To address these challenges, we propose AccLLM, a comprehensive acceleration framework that enables efficient and fast long-context LLM inference through algorithm and hardware co-design. At the algorithmic level, we integrate (1) pruning, (2) \u039b-shaped attention, and (3) an innovative W2A8KV4 (2-bit weights, 8-bit activations, and 4-bit KV cache) quantization scheme, thus effectively reducing memory and bandwidth requirements while facilitating LLMs' long-sequence generation. At the hardware level, we design a dedicated FPGA-based accelerator with a reconfigurable computing engine to effectively and flexibly accommodate diverse operations arising from our compression algorithm, thereby fully translating the algorithmic innovations into tangible hardware efficiency. We validate AccLLM on the Xilinx Alveo U280 FPGA, demonstrating a 4.07x energy efficiency and a 2.98x throughput compared to the state-of-the-art work FlightLLM.",
+      "arxiv_id": "2505.03745",
+      "authors": [
+        "Yanbiao Liang",
+        "Huihong Shi",
+        "Haikuo Shao",
+        "Zhongfeng Wang"
+      ],
+      "cache": {
+        "byte_count": 2808096,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2505.03745v1.pdf",
+        "sha256": "9d183689febd28655e39b0b35fddc464d32306e4138f8817d2c269f96f1c4aca"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2505.03745v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-04-07T02:52:30Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "AccLLM: Accelerating Long-Context LLM Inference Via Algorithm-Hardware Co-Design",
+      "updated_at": "2025-04-07T02:52:30Z",
+      "version": 1
+    },
+    "2507.01035v1": {
+      "abs_url": "https://arxiv.org/abs/2507.01035v1",
+      "abstract": "The incessant advent of online services demands high speed and efficient recommender systems (ReS) that can maintain real-time performance along with processing very complex user-item interactions. The present study, therefore, considers computational bottlenecks involved in hybrid Graph Neural Network (GNN) and Large Language Model (LLM)-based ReS with the aim optimizing their inference latency and training efficiency. An extensive methodology was used: hybrid GNN-LLM integrated architecture-optimization strategies(quantization, LoRA, distillation)-hardware acceleration (FPGA, DeepSpeed)-all under R 4.4.2. Experimental improvements were significant, with the optimal Hybrid + FPGA + DeepSpeed configuration reaching 13.6% more accuracy (NDCG@10: 0.75) at 40-60ms of latency, while LoRA brought down training time by 66% (3.8 hours) in comparison to the non-optimized baseline. Irrespective of domain, such as accuracy or efficiency, it can be established that hardware-software co-design and parameter-efficient tuning permit hybrid models to outperform GNN or LLM approaches implemented independently. It recommends the use of FPGA as well as LoRA for real-time deployment. Future work should involve federated learning along with advanced fusion architectures for better scalability and privacy preservation. Thus, this research marks the fundamental groundwork concerning next-generation ReS balancing low-latency response with cutting-edge personalization.",
+      "arxiv_id": "2507.01035",
+      "authors": [
+        "Yushang Zhao",
+        "Haotian Lyu",
+        "Yike Peng",
+        "Aijia Sun",
+        "Feng Jiang",
+        "Xinyue Han"
+      ],
+      "cache": {
+        "byte_count": 1808881,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2507.01035v1.pdf",
+        "sha256": "87b6c8071413c6eab1235b197913c601ad5ee6b8bf9b7d46f9e8771f300316ae"
+      },
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.PF"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2507.01035v1",
+      "primary_category": "cs.LG",
+      "published_at": "2025-06-21T03:10:50Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Research on Low-Latency Inference and Training Efficiency Optimization for Graph Neural Network and Large Language Model-Based Recommendation Systems",
+      "updated_at": "2025-06-21T03:10:50Z",
+      "version": 1
+    },
+    "2507.03308v2": {
+      "abs_url": "https://arxiv.org/abs/2507.03308v2",
+      "abstract": "Deploying large language models (LLMs) on embedded devices remains a significant research challenge due to the high computational and memory demands of LLMs and the limited hardware resources available in such environments. While embedded FPGAs have demonstrated performance and energy efficiency in traditional deep neural networks, their potential for LLM inference remains largely unexplored. Recent efforts to deploy LLMs on FPGAs have primarily relied on large, expensive cloud-grade hardware and have only shown promising results on relatively small LLMs, limiting their real-world applicability. In this work, we present Hummingbird, a novel FPGA accelerator designed specifically for LLM inference on embedded FPGAs. Hummingbird is smaller, targeting embedded FPGAs such as the KV260 and ZCU104 with 67% LUT, 39% DSP, and 42% power savings over existing research. Hummingbird is stronger, targeting LLaMA3-8B and supporting longer contexts, overcoming the typical 4GB memory constraint of embedded FPGAs through offloading strategies. Finally, Hummingbird is faste, achieving 4.8 tokens/s and 8.6 tokens/s for LLaMA3-8B on the KV260 and ZCU104 respectively, with 93-94% model bandwidth utilization, outperforming the prior 4.9 token/s for LLaMA2-7B with 84% bandwidth utilization baseline. We further demonstrate the viability of industrial applications by deploying Hummingbird on a cost-optimized Spartan UltraScale FPGA, paving the way for affordable LLM solutions at the edge.",
+      "arxiv_id": "2507.03308",
+      "authors": [
+        "Jindong Li",
+        "Tenglong Li",
+        "Ruiqi Chen",
+        "Guobin Shen",
+        "Dongcheng Zhao",
+        "Qian Zhang",
+        "Yi Zeng"
+      ],
+      "cache": {
+        "byte_count": 643694,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2507.03308v2.pdf",
+        "sha256": "1d0c9d601f45699e3cb326f2c791a9c54c12249a108f12b62ef770d5b62e3b2e"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2507.03308v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-07-04T05:35:19Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Hummingbird: A Smaller and Faster Large Language Model Accelerator on Embedded FPGA",
+      "updated_at": "2025-10-17T12:09:13Z",
+      "version": 2
+    },
+    "2507.14139v1": {
+      "abs_url": "https://arxiv.org/abs/2507.14139v1",
+      "abstract": "This paper introduces SpeedLLM, a neural network accelerator designed on the Xilinx Alevo U280 platform and optimized for the Tinyllama framework to enhance edge computing performance. Key innovations include data stream parallelism, a memory reuse strategy, and Llama2 operator fusion, which collectively reduce latency and energy consumption. SpeedLLM's data pipeline architecture optimizes the read-compute-write cycle, while the memory strategy minimizes FPGA resource demands. The operator fusion boosts computational density and throughput. Results show SpeedLLM outperforms traditional Tinyllama implementations, achieving up to 4.8* faster performance and 1.18* lower energy consumption, offering improvements in edge devices.",
+      "arxiv_id": "2507.14139",
+      "authors": [
+        "Peipei Wang",
+        "Wu Guan",
+        "Liping Liang",
+        "Zhijun Wang",
+        "Hanqing Luo",
+        "Zhibin Zhang"
+      ],
+      "cache": {
+        "byte_count": 1201182,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2507.14139v1.pdf",
+        "sha256": "1e6f55eab43699e6f5ed9f76a8ad76e36e2ac2a87cee0bc2e74c9e601444dd37"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2507.14139v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-05-07T05:39:07Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "SpeedLLM: An FPGA Co-design of Large Language Model Inference Accelerator",
+      "updated_at": "2025-05-07T05:39:07Z",
+      "version": 1
+    },
+    "2508.07431v1": {
+      "abs_url": "https://arxiv.org/abs/2508.07431v1",
+      "abstract": "The increasing scale of deep learning models in high-energy physics (HEP) has posed challenges to their deployment on low-power, latency-sensitive platforms, such as FPGAs and ASICs used in trigger systems, as well as in offline data reconstruction and processing pipelines. In this work, we introduce BitParT, a 1-bit Transformer-based architecture designed specifically for the top-quark tagging method. Building upon recent advances in ultra-low-bit large language models (LLMs), we extended these ideas to the HEP domain by developing a binary-weight variant (BitParT) of the Particle Transformer (ParT) model. Our findings indicate a potential for substantial reduction in model size and computational complexity, while maintaining high tagging performance. We benchmark BitParT on the public Top Quark Tagging Reference Dataset and show that it achieves competitive performance relative to its full-precision counterpart. This work demonstrates the design of extreme quantized models for physics applications, paving the way for real-time inference in collider experiments with minimal and optimized resource usage.",
+      "arxiv_id": "2508.07431",
+      "authors": [
+        "Saurabh Rai",
+        "Prisha",
+        "Jitendra Kumar"
+      ],
+      "cache": {
+        "byte_count": 718192,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2508.07431v1.pdf",
+        "sha256": "b0556cc38bf4dd1632bef0030c5a3c07cc4540778b16ec326e9aa6dd91cfbb92"
+      },
+      "categories": [
+        "hep-ph"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2508.07431v1",
+      "primary_category": "hep-ph",
+      "published_at": "2025-08-10T17:06:24Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Investigating 1-Bit Quantization in Transformer-Based Top Tagging",
+      "updated_at": "2025-08-10T17:06:24Z",
+      "version": 1
+    },
+    "2508.10303v1": {
+      "abs_url": "https://arxiv.org/abs/2508.10303v1",
+      "abstract": "Design space exploration (DSE) is critical for developing optimized hardware architectures, especially for AI workloads such as deep neural networks (DNNs) and large language models (LLMs), which require specialized acceleration. As model complexity grows, accelerator design spaces have expanded to O(10^17), becoming highly irregular, non-convex, and exhibiting many-to-one mappings from design configurations to performance metrics. This complexity renders direct inverse derivation infeasible and necessitates heuristic or sampling-based optimization. Conventional methods - including Bayesian optimization, gradient descent, reinforcement learning, and genetic algorithms - depend on iterative sampling, resulting in long runtimes and sensitivity to initialization. Deep learning-based approaches have reframed DSE as classification using recommendation models, but remain limited to small-scale (O(10^3)), less complex design spaces. To overcome these constraints, we propose a generative approach that models hardware design as 1-D image synthesis conditioned on target performance, enabling efficient learning of non-differentiable, non-bijective hardware-performance mappings. Our framework achieves 0.86% lower generation error than Bayesian optimization with a 17000x speedup, and outperforms GANDSE with 30% lower error at only 1.83x slower search. We further extend the method to a structured DSE setting, attaining 9.8% lower energy-delay product (EDP) and 6% higher performance, with up to 145.6x and 1312x faster search compared to existing optimization methods on O(10^17) design spaces. For LLM inference, our method achieves 3.37x and 7.75x lower EDP on a 32nm ASIC and Xilinx Ultrascale+ VPU13 FPGA, respectively, compared to the state-of-the-art DOSA framework.",
+      "arxiv_id": "2508.10303",
+      "authors": [
+        "Arkapravo Ghosh",
+        "Abhishek Moitra",
+        "Abhiroop Bhattacharjee",
+        "Ruokai Yin",
+        "Priyadarshini Panda"
+      ],
+      "cache": {
+        "byte_count": 4460241,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2508.10303v1.pdf",
+        "sha256": "6666bba0612a0b2b9225dd2fa4ec8141a1092c3ad50dbd8b4b336c02b21acc02"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2508.10303v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-08-14T03:19:34Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "DiffAxE: Diffusion-driven Hardware Accelerator Generation and Design Space Exploration",
+      "updated_at": "2025-08-14T03:19:34Z",
+      "version": 1
+    },
+    "2509.13765v1": {
+      "abs_url": "https://arxiv.org/abs/2509.13765v1",
+      "abstract": "Ternary quantization has emerged as a powerful technique for reducing both computational and memory footprint of large language models (LLM), enabling efficient real-time inference deployment without significantly compromising model accuracy. Conventional LLM inference platforms (e.g GPUs) cannot capitalize on its benefits, as they (i) lack native support for ternary arithmetic and memory specialization and (ii) remain severely under-utilized in low-batch, real-time scenarios. In this work, we propose TENET, a sparse-aware LUT-centric architecture that co-optimizes algorithm, compute, and memory for ternary LLM inference. To maximize the efficiency of Ternary Linear layer, TENET introduces a Sparse Ternary LUT (STL) core that optimizes ternary mixed-precision GEMM using a symmetric precompute lookup table. It also features Dynamic Activation N:M Sparsity to exploit the sparsity within the activation of each token. Additionally, we propose a LUT-based 64B:80B ternary weight decompression module to fully exploit the memory efficiency of ternary values. At the system level, we design a heterogeneous TENET accelerator with full programmability that integrates STL cores with high-precision cores. An associated Linear-Projection-aware Sparse Attention dataflow is introduced to optimize memory access and hardware utilization. We implement TENET accelerator prototype on both FPGA and ASIC platforms. Experiments across various model sizes and workloads demonstrate that TENET-FPGA and TENET-ASIC improve energy efficiency by 4.3$\\times$ and 21.1$\\times$, respectively, compared to the A100 GPU. Furthermore, TENET-ASIC achieves a 2.7$\\times$ average speedup compared to the A100 GPU in end-to-end inference latency.",
+      "arxiv_id": "2509.13765",
+      "authors": [
+        "Zhirui Huang",
+        "Rui Ma",
+        "Shijie Cao",
+        "Ran Shu",
+        "Ian Wang",
+        "Ting Cao",
+        "Chixiao Chen",
+        "Yongqiang Xiong"
+      ],
+      "cache": {
+        "byte_count": 3105415,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2509.13765v1.pdf",
+        "sha256": "6e30b46b859e0f59d219cb23fb26ab187a64e831f0e39bb91a3b4338cc26f2b5"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2509.13765v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-09-17T07:24:25Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "TENET: An Efficient Sparsity-Aware LUT-Centric Architecture for Ternary LLM Inference On Edge",
+      "updated_at": "2025-09-17T07:24:25Z",
+      "version": 1
+    },
+    "2509.17355v1": {
+      "abs_url": "https://arxiv.org/abs/2509.17355v1",
+      "abstract": "The increasing complexity and energy demands of large-scale neural networks, such as Deep Neural Networks (DNNs) and Large Language Models (LLMs), challenge their practical deployment in edge applications due to high power consumption, area requirements, and privacy concerns. Spiking Neural Networks (SNNs), particularly in analog implementations, offer a promising low-power alternative but suffer from noise sensitivity and connectivity limitations. This work presents a novel CMOS-implemented field-programmable neural network architecture for hardware reservoir computing. We propose a Leaky Integrate-and-Fire (LIF) neuron circuit with integrated voltage-controlled oscillators (VCOs) and programmable weighted interconnections via an on-chip FPGA framework, enabling arbitrary reservoir configurations. The system demonstrates effective implementation of the FORCE algorithm learning, linear and non-linear memory capacity benchmarks, and NARMA10 tasks, both in simulation and actual chip measurements. The neuron design achieves compact area utilization (around 540 NAND2-equivalent units) and low energy consumption (21.7 pJ/pulse) without requiring ADCs for information readout, making it ideal for system-on-chip integration of reservoir computing. This architecture paves the way for scalable, energy-efficient neuromorphic systems capable of performing real-time learning and inference with high configurability and digital interfacing.",
+      "arxiv_id": "2509.17355",
+      "authors": [
+        "Ckristian Duran",
+        "Nanako Kimura",
+        "Zolboo Byambadorj",
+        "Tetsuya Iizuka"
+      ],
+      "cache": {
+        "byte_count": 4157574,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2509.17355v1.pdf",
+        "sha256": "bb31697dcf483937435bddcc73df86ad6a52070d1bbce408d4066a90cb51d72f"
+      },
+      "categories": [
+        "cs.NE"
+      ],
+      "doi": "10.1088/2634-4386/ae66b2",
+      "journal_ref": "2026 Neuromorph. Comput. Eng. 6 024011",
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2509.17355v1",
+      "primary_category": "cs.NE",
+      "published_at": "2025-09-22T05:19:46Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "CMOS Implementation of Field Programmable Spiking Neural Network for Hardware Reservoir Computing",
+      "updated_at": "2025-09-22T05:19:46Z",
+      "version": 1
+    },
+    "2510.15926v2": {
+      "abs_url": "https://arxiv.org/abs/2510.15926v2",
+      "abstract": "With the emergence of wearable devices and other embedded systems, deploying large language models (LLMs) on edge platforms has become an urgent need. However, this is challenging because of their high computational and memory demands. Although recent low-bit quantization methods (e.g., BitNet, DeepSeek) compress weights to as low as 1.58~bits with minimal accuracy loss, edge deployment is still constrained by limited on-chip resources, power budgets, and the often-neglected long latency of the prefill stage. We present \\textbf{TeLLMe}, the first table-lookup-based ternary LLM accelerator for low-power edge FPGAs that fully supports both prefill and autoregressive decoding using 1.58-bit weights and 8-bit activations. TeLLMe incorporates several novel techniques, including (1) a table-lookup-based ternary matrix multiplication (TLMM) engine utilizing grouped activations and online precomputation for low resource utilization and high throughput; (2) a fine-grained analytic URAM-based weight buffer management scheme for efficient loading and compute engine access; (3) a streaming dataflow architecture that fuses floating-point element-wise operations with linear computations to hide latency; (4) a reversed-reordered prefill stage attention with fused attention operations for high memory efficiency; and (5) a resource-efficient specialized decoding stage attention. Under a 5~W power budget, TeLLMe delivers up to 25~tokens/s decoding throughput and 0.45--0.96~s time-to-first-token (TTFT) for 64--128 token prompts, marking a significant energy-efficiency advancement in LLM inference on edge FPGAs.",
+      "arxiv_id": "2510.15926",
+      "authors": [
+        "Ye Qiao",
+        "Zhiheng Chen",
+        "Yifan Zhang",
+        "Yian Wang",
+        "Sitao Huang"
+      ],
+      "cache": {
+        "byte_count": 5240216,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2510.15926v2.pdf",
+        "sha256": "510e249e529748795cf6544efe41473ee18bf0ffd943e37974f76afc3064f14d"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2510.15926v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-10-03T05:37:51Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "TeLLMe v2: An Efficient End-to-End Ternary LLM Prefill and Decode Accelerator with Table-Lookup Matmul on Edge FPGAs",
+      "updated_at": "2025-10-21T17:20:02Z",
+      "version": 2
+    },
+    "2510.16418v1": {
+      "abs_url": "https://arxiv.org/abs/2510.16418v1",
+      "abstract": "Collaborative large language model (LLM) inference enables real-time, privacy-preserving AI services on resource-constrained edge devices by partitioning computational workloads between client devices and edge servers. However, this paradigm is severely hindered by communication bottlenecks caused by the transmission of high-dimensional intermediate activations, exacerbated by the autoregressive decoding structure of LLMs, where bandwidth consumption scales linearly with output length. Existing activation compression methods struggle to simultaneously achieve high compression ratios, low reconstruction error, and computational efficiency. This paper proposes FourierCompress, a novel, layer-aware activation compression framework that exploits the frequency-domain sparsity of LLM activations. We rigorously demonstrate that activations from the first Transformer layer exhibit strong smoothness and energy concentration in the low-frequency domain, making them highly amenable to near-lossless compression via the Fast Fourier Transform (FFT). FourierCompress transforms activations into the frequency domain, retains only a compact block of low-frequency coefficients, and reconstructs the signal at the server using conjugate symmetry, enabling seamless hardware acceleration on DSPs and FPGAs. Extensive experiments on Llama 3 and Qwen2.5 models across 10 commonsense reasoning datasets demonstrate that FourierCompress preserves performance remarkably close to the uncompressed baseline, outperforming Top-k, QR, and SVD. FourierCompress bridges the gap between communication efficiency (an average 7.6x reduction in activation size), near-lossless inference (less than 0.3% average accuracy loss), and significantly faster compression (achieving over 32x reduction in compression time compared to Top-k via hardware acceleration) for edge-device LLM inference.",
+      "arxiv_id": "2510.16418",
+      "authors": [
+        "Jian Ma",
+        "Xinchen Lyu",
+        "Jun Jiang",
+        "Longhao Zou",
+        "Chenshan Ren",
+        "Qimei Cui",
+        "Xiaofeng Tao"
+      ],
+      "cache": {
+        "byte_count": 5579373,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2510.16418v1.pdf",
+        "sha256": "a23eee48b75491840525a04923f353e106c7fd43fad675abe257ecae6f05b013"
+      },
+      "categories": [
+        "cs.DC"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2510.16418v1",
+      "primary_category": "cs.DC",
+      "published_at": "2025-10-18T09:26:02Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "FourierCompress: Layer-Aware Spectral Activation Compression for Efficient and Accurate Collaborative LLM Inference",
+      "updated_at": "2025-10-18T09:26:02Z",
+      "version": 1
+    },
+    "2511.06174v2": {
+      "abs_url": "https://arxiv.org/abs/2511.06174v2",
+      "abstract": "The rapid development of large language models (LLM) has greatly enhanced everyday applications. While many FPGA-based accelerators, with flexibility for fine-grained data control, exhibit superior speed and energy efficiency compared to GPUs, recent GPU-specific optimizations have diminished this advantage. When limited to arithmetic-based computation, FPGAs often underperform GPUs due to their comparatively fewer computational resources. To address this challenge, we exploit a key advantage of FPGAs over GPUs: abundant distributed on-chip memory embedded among computational units. We believe that shifting LLM inference from arithmetic-based to memory-based computations through table lookups can improve the efficiency on FPGAs to compete with GPUs. However, existing methods are inefficient or unable to scale and deploy language models due to algorithm and architecture design limitations. This paper introduces \\textbf{LUT-LLM}, the first FPGA accelerator that deploy 1B+ language model with memory-based computation, leveraging vector quantization. We construct a performance model, evaluate multiple quantization schemes, and identify activation-weight vector co-quantization as the most effective approach. To support this scheme, LUT-LLM features (1) bandwidth-aware parallel centroid search to reduce decoding latency, (2) efficient 2D table lookups, and (3) a spatial-temporal hybrid design to reduce data caching for a higher throughput table lookup. We develop a training recipe that converts existing models to support table lookups with high accuracy and prototype LUT-LLM for Qwen 3 1.7B model on the AMD V80 FPGA, reducing arithmetic operations by $4\\times$ and achieving a $1.10\\sim3.29\\times$ faster generation speed and a $3.05\\sim 6.60\\times$ higher energy efficiency than GPUs.",
+      "arxiv_id": "2511.06174",
+      "authors": [
+        "Zifan He",
+        "Shengyu Ye",
+        "Rui Ma",
+        "Yang Wang",
+        "Jason Cong"
+      ],
+      "cache": {
+        "byte_count": 4657518,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2511.06174v2.pdf",
+        "sha256": "6afab4bb78b9b92fa017b6c8aeed642b388d936f43054d76498f2fe9a1b1183c"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2511.06174v2",
+      "primary_category": "cs.AR",
+      "published_at": "2025-11-09T01:17:08Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "LUT-LLM: Efficient Large Language Model Inference with Memory-based Computations on FPGAs",
+      "updated_at": "2026-03-22T06:32:51Z",
+      "version": 2
+    },
+    "2511.13676v1": {
+      "abs_url": "https://arxiv.org/abs/2511.13676v1",
+      "abstract": "Recent advances in LLMs have outpaced the computational and memory capacities of edge platforms that primarily employ CPUs, thereby challenging efficient and scalable deployment. While ternary quantization enables significant resource savings, existing CPU solutions rely heavily on memory-based lookup tables (LUTs) which limit scalability, and FPGA or GPU accelerators remain impractical for edge use. This paper presents T-SAR, the first framework to achieve scalable ternary LLM inference on CPUs by repurposing the SIMD register file for dynamic, in-register LUT generation with minimal hardware modifications. T-SAR eliminates memory bottlenecks and maximizes data-level parallelism, delivering 5.6-24.5x and 1.1-86.2x improvements in GEMM latency and GEMV throughput, respectively, with only 3.2% power and 1.4% area overheads in SIMD units. T-SAR achieves up to 2.5-4.9x the energy efficiency of an NVIDIA Jetson AGX Orin, establishing a practical approach for efficient LLM inference on edge platforms.",
+      "arxiv_id": "2511.13676",
+      "authors": [
+        "Hyunwoo Oh",
+        "KyungIn Nam",
+        "Rajat Bhattacharjya",
+        "Hanning Chen",
+        "Tamoghno Das",
+        "Sanggeon Yun",
+        "Suyeon Jang",
+        "Andrew Ding",
+        "Nikil Dutt",
+        "Mohsen Imani"
+      ],
+      "cache": {
+        "byte_count": 698171,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2511.13676v1.pdf",
+        "sha256": "89d312c2110b48628e1ea647b1e9d777fedd7d1f5e097c7b8d686774db5b6393"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2511.13676v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-11-17T18:32:03Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "T-SAR: A Full-Stack Co-design for CPU-Only Ternary LLM Inference via In-Place SIMD ALU Reorganization",
+      "updated_at": "2025-11-17T18:32:03Z",
+      "version": 1
+    },
+    "2512.00016v1": {
+      "abs_url": "https://arxiv.org/abs/2512.00016v1",
+      "abstract": "The ever increasing complexity of the hardware design process demands improved hardware design and verification methodologies. With the advent of generative AI various attempts have been made to automate parts of the design and verification process. Large language models (LLMs) as well as specialized models generate hdl and testbenches for small components, having a few leaf level components. However, there are only a few attempts to automate the entire processor design process. Hardware design demands hierarchical and modular design processes. We utilized this best practice systematically and effectively. We propose agentic automated processor design and verification with engineers in the loop. The agent with optional specification tries to break down the design into sub-components, generate HDL and cocotb tests, and verifies the components involving engineer guidance, especially during debugging and synthesis. We designed various digital systems using this approach. However, we selected two simple processors for demonstration purposes in this work. The first one is a LEGv8 like a simple processor verified, synthesized and programmed for the DE-10 Lite FPGA. The second one is a RISC-V like 32-bit processor designed and verified in similar manner and synthesized. However, it is not programmed into the DE-10 Lite. This process is accomplished usually using around a million inference tokens per processor, using a combination of reasoning (e.g gemini-pro) and non-reasoning models (eg. gpt-5-mini) based on the complexity of the task. This indicates that hardware design and verification experimentation can be done cost effectively without using any specialized hardware. The approach is scalable, we even attempted system-on-chip, which we want to experiment in our future work.",
+      "arxiv_id": "2512.00016",
+      "authors": [
+        "Mubarek Mohammed"
+      ],
+      "cache": {
+        "byte_count": 355139,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2512.00016v1.pdf",
+        "sha256": "a4fdecb03f912bd2305348d10cfb6b61cc2297bc660d3f8b1411ac6e23ceeae6"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2512.00016v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-10-19T22:30:28Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Architect in the Loop Agentic Hardware Design and Verification",
+      "updated_at": "2025-10-19T22:30:28Z",
+      "version": 1
+    },
+    "2512.00335v1": {
+      "abs_url": "https://arxiv.org/abs/2512.00335v1",
+      "abstract": "Large Language Models (LLMs) demand substantial computational resources, resulting in high energy consumption on GPUs. To address this challenge, we focus on Coarse-Grained Reconfigurable Arrays (CGRAs) as an effective alternative that provides a trade-off between energy efficiency and programmability. This paper presents the first comprehensive, end-to-end evaluation of a non-AI-specialized Coarse-Grained Linear Array (CGLA) accelerator for the state-of-the-art Qwen LLM family. The architecture has a general-purpose, task-agnostic design, yet its flexible instruction set allows for domain-specific adaptations. This flexibility enables the architecture to achieve high efficiency for sustainable LLM inference. We assess the performance of our architecture on an FPGA prototype using the widely adopted llama.cpp framework. We then project its potential as a 28nm ASIC and compare it against a high-performance GPU (NVIDIA RTX 4090) and an edge AI device (NVIDIA Jetson AGX Orin). While GPUs exhibit lower latency, our non-AI-specific accelerator achieves higher energy efficiency, improving the Power-Delay Product (PDP) by up to 44.4x and 13.6x compared with the RTX 4090 and Jetson, respectively. Similarly, it reduces the Energy-Delay Product (EDP) by up to 11.5x compared to the high-performance GPU, demonstrating a favorable performance-energy trade-off. Critically, our system-level analysis identifies host-accelerator data transfer as the primary performance bottleneck, a factor often overlooked in kernel-level studies. These findings provide design guidance for next-generation LLM accelerators. This work validates CGRAs as a suitable platform for LLM inference in power-constrained environments, without being confined to specific algorithms.",
+      "arxiv_id": "2512.00335",
+      "authors": [
+        "Takuto Ando",
+        "Yu Eto",
+        "Ayumu Takeuchi",
+        "Yasuhiko Nakashima"
+      ],
+      "cache": {
+        "byte_count": 5312157,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2512.00335v1.pdf",
+        "sha256": "14323a980ac2e5eabc7a3c7b276eee0c05aae9fe683a9565f5002c51124047d8"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": "10.1109/ACCESS.2025.3636266",
+      "journal_ref": "IEEE Access, 2025",
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2512.00335v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-11-29T05:55:37Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Efficient Kernel Mapping and Comprehensive System Evaluation of LLM Acceleration on a CGLA",
+      "updated_at": "2025-11-29T05:55:37Z",
+      "version": 1
+    },
+    "2512.11550v1": {
+      "abs_url": "https://arxiv.org/abs/2512.11550v1",
+      "abstract": "Aggressively quantized large language models (LLMs), such as BitNet-style 1.58-bit Transformers with ternary weights, make it feasible to deploy generative AI on low-power edge FPGAs. However, as prompts grow to tens of thousands of tokens, edge hardware performance drops sharply with sequence length due to quadratic prefill cost and rapidly increasing KV-cache bandwidth demands, making inference latency of longer context length a first-order system concern. Recent studies on LLMs expose a fundamental prefill-decode asymmetry: prefill is compute-bound and dominated by dense matrix-matrix operations, whereas decoding is memory-bandwidth-bound and dominated by KV-cache traffic. A static accelerator must provision resources and a single dataflow for both regimes, leading to duplicated attention logic, underutilized fabric, and tight LUT/URAM limits that cap model size and usable context. We propose a prefill--decode disaggregated LLM accelerator, PD-Swap, that uses Dynamic Partial Reconfiguration (DPR) to time-multiplex the attention module on edge FPGAs. The core table-lookup ternary matrix multiplication and weight-buffering engines remain static, while the attention subsystem is a reconfigurable partition with two phase-specialized architectures: a compute-heavy, token-parallel prefill engine and a bandwidth-optimized, KV-cache-centric decoding engine. A roofline-inspired model and design space exploration jointly optimize reconfigurable-region size, parallelism under reconfiguration and routability constraints, and reconfiguration latency is hidden by computation latency. PD-Swap achieves up to 27~tokens/s decoding throughput, outperforming prior state-of-the-art works by 1.3x--2.1x (larger gains at longer context lengths), without extra area cost.",
+      "arxiv_id": "2512.11550",
+      "authors": [
+        "Yifan Zhang",
+        "Zhiheng Chen",
+        "Ye Qiao",
+        "Sitao Huang"
+      ],
+      "cache": {
+        "byte_count": 3123306,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2512.11550v1.pdf",
+        "sha256": "30a6b838fa8f0850f4ba96fe00df2edb992e4caf783cf349b2a0cdd20b874937"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2512.11550v1",
+      "primary_category": "cs.AR",
+      "published_at": "2025-12-12T13:35:09Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "PD-Swap: Prefill-Decode Logic Swapping for End-to-End LLM Inference on Edge FPGAs via Dynamic Partial Reconfiguration",
+      "updated_at": "2025-12-12T13:35:09Z",
+      "version": 1
+    },
+    "2512.23914v3": {
+      "abs_url": "https://arxiv.org/abs/2512.23914v3",
+      "abstract": "Neural networks have become dominant computational workloads across cloud and edge platforms, but their rapid growth in model size and deployment diversity has exposed hardware bottlenecks increasingly dominated by memory movement, communication, and irregular operators rather than peak arithmetic throughput. This survey reviews the current technology landscape for hardware acceleration of deep learning, spanning GPUs and tensor-core architectures, domain-specific accelerators (TPUs, NPUs), FPGA-based designs, ASIC inference engines, and emerging LLM-serving accelerators such as LPUs, alongside in-/near-memory computing and neuromorphic/analog approaches. We organize the survey using a unified taxonomy across (i) workloads (CNNs, RNNs, GNNs, Transformers/LLMs), (ii) execution settings (training vs.\\ inference; datacenter vs.\\ edge), and (iii) optimization levers (reduced precision, sparsity and pruning, operator fusion, compilation and scheduling, memory-system/interconnect design). We synthesize key architectural ideas such as systolic arrays, vector and SIMD engines, specialized attention and softmax kernels, quantization-aware datapaths, and high-bandwidth memory, and discuss how software stacks and compilers bridge model semantics to hardware. Finally, we highlight open challenges -- including efficient long-context LLM inference (KV-cache management), robust support for dynamic and sparse workloads, energy- and security-aware deployment, and fair benchmarking -- pointing to promising directions for the next generation of neural acceleration.",
+      "arxiv_id": "2512.23914",
+      "authors": [
+        "Bin Xu",
+        "Ayan Banerjee",
+        "Sandeep Gupta"
+      ],
+      "cache": {
+        "byte_count": 40837923,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2512.23914v3.pdf",
+        "sha256": "42a39a9e7b48f6ddd9d418863d7ca114cfc9464bc6de599c734253a109d6a8f1"
+      },
+      "categories": [
+        "eess.SY"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2512.23914v3",
+      "primary_category": "eess.SY",
+      "published_at": "2025-12-30T00:27:02Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Hardware Acceleration for Neural Networks: A Comprehensive Survey",
+      "updated_at": "2026-01-15T06:37:21Z",
+      "version": 3
+    },
+    "2512.24713v2": {
+      "abs_url": "https://arxiv.org/abs/2512.24713v2",
+      "abstract": "Large language models (LLMs) have demonstrated remarkable performance across a wide range of language processing tasks. However, this success comes at the cost of substantial computation and memory requirements, which significantly impedes their deployment in resource-constrained environments. To address this challenge, this work introduces an automation framework that leverages weight pruning and low-bit quantization, and presents a hardware-software co-design method that generates accelerators on the Field-Programmable Gate Array (FPGA) platform. In particular, we implement a unified pipeline that applies N:M structured pruning and 4-bit integer quantization to reduce the memory footprint, followed by optimized dequantization and matrix multiplication to enhance LLM inference on several hardware platforms, including CPUs, NVIDIA GPUs with Dense and 2:4 Sparse Tensor Cores, and a custom systolic-array-based FPGA accelerator. Utilizing 2:4 sparsity combined with quantization on $4096 \\times 4096$ matrices, our approach achieves a reduction of up to $4\\times$ in weight storage and a $1.71\\times$ speedup in matrix multiplication, yielding a $1.29\\times$ end-to-end latency reduction compared to dense GPU baselines. Scaling analysis on the LLaMA-7B model further shows that structured sparsity enhances the throughput per token by $1.36\\times$. These results demonstrate the synergy of fine-grained N:M sparsity and quantization for enabling efficient and deployable LLM inference, while the proposed FPGA accelerator offers a flexible architectural path for supporting a broader class of sparsity patterns beyond the fixed 2:4 hardware constraints.",
+      "arxiv_id": "2512.24713",
+      "authors": [
+        "Fen-Yu Hsieh",
+        "Yun-Chang Teng",
+        "Ding-Yong Hong",
+        "Jan-Jan Wu"
+      ],
+      "cache": null,
+      "categories": [
+        "cs.LG",
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2512.24713v2",
+      "primary_category": "cs.LG",
+      "published_at": "2025-12-31T08:27:40Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "FPGA Co-Design for Efficient N:M Sparse and Quantized Model Inference",
+      "updated_at": "2026-01-20T14:13:05Z",
+      "version": 2
+    },
+    "2601.15710v1": {
+      "abs_url": "https://arxiv.org/abs/2601.15710v1",
+      "abstract": "We present FlexLLM, a composable High-Level Synthesis (HLS) library for rapid development of domain-specific LLM accelerators. FlexLLM exposes key architectural degrees of freedom for stage-customized inference, enabling hybrid designs that tailor temporal reuse and spatial dataflow differently for prefill and decode, and provides a comprehensive quantization suite to support accurate low-bit deployment. Using FlexLLM, we build a complete inference system for the Llama-3.2 1B model in under two months with only 1K lines of code. The system includes: (1) a stage-customized accelerator with hardware-efficient quantization (12.68 WikiText-2 PPL) surpassing SpinQuant baseline, and (2) a Hierarchical Memory Transformer (HMT) plug-in for efficient long-context processing. On the AMD U280 FPGA at 16nm, the accelerator achieves 1.29$\\times$ end-to-end speedup, 1.64$\\times$ higher decode throughput, and 3.14$\\times$ better energy efficiency than an NVIDIA A100 GPU (7nm) running BF16 inference; projected results on the V80 FPGA at 7nm reach 4.71$\\times$, 6.55$\\times$, and 4.13$\\times$, respectively. In long-context scenarios, integrating the HMT plug-in reduces prefill latency by 23.23$\\times$ and extends the context window by 64$\\times$, delivering 1.10$\\times$/4.86$\\times$ lower end-to-end latency and 5.21$\\times$/6.27$\\times$ higher energy efficiency on the U280/V80 compared to the A100 baseline. FlexLLM thus bridges algorithmic innovation in LLM inference and high-performance accelerators with minimal manual effort.",
+      "arxiv_id": "2601.15710",
+      "authors": [
+        "Jiahao Zhang",
+        "Zifan He",
+        "Nicholas Fraser",
+        "Michaela Blott",
+        "Yizhou Sun",
+        "Jason Cong"
+      ],
+      "cache": {
+        "byte_count": 2207810,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2601.15710v1.pdf",
+        "sha256": "68a8c0f9f483718cdf2ea63657253814536302c8648f77491d75446ba0af92c1"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2601.15710v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-01-22T07:31:51Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "FlexLLM: Composable HLS Library for Flexible Hybrid LLM Accelerator Design",
+      "updated_at": "2026-01-22T07:31:51Z",
+      "version": 1
+    },
+    "2602.18750v2": {
+      "abs_url": "https://arxiv.org/abs/2602.18750v2",
+      "abstract": "Deploying Large Language Models (LLMs) on memory-constrained AI Personal Computers (AIPCs) enables low-latency, privacy-preserving inference, but long-context generation is fundamentally bottlenecked by the linearly growing Key-Value (KV) cache. While dynamic KV eviction mitigates this memory wall, existing offloading strategies either trigger crippling PCIe I/O bottlenecks on standard SSDs or suffer from FPGA resource exhaustion by forcing compute-intensive exact attention on a single, weak Computational Storage Drive (CSD). In this paper, we propose HillInfer, a CSD-assisted KV eviction framework that introduces a paradigm shift: offloading strictly lightweight token importance evaluation to a single CSD (e.g., SmartSSD) on AIPCs. To fully capitalize on this lightweight offloading strategy, HillInfer orchestrates a Hierarchical KV Cache Manager (HKM) that leverages temporal locality and dynamic token hit rates to physically partition cache pools, thereby eliminating cross-device I/O thrashing. Additionally, we design an Adaptive Prefetch-based Pipeline (APP) that adaptively balances the evaluation workload between the host CPU and the SmartSSD, effectively masking the heterogeneous straggler effect. Finally, we introduce a CSD-based Evaluation Configuration (CEC) to enable resource-efficient near-data processing on the FPGA. Extensive experiments on a commodity AIPC demonstrate that HillInfer achieves up to an 8.56$\\times$ speedup over state-of-the-art baselines, delivering low-latency, I/O-efficient long-context inference without sacrificing model accuracy.",
+      "arxiv_id": "2602.18750",
+      "authors": [
+        "He Sun",
+        "Shinan Liu",
+        "Li Li",
+        "Mingjun Xiao"
+      ],
+      "cache": {
+        "byte_count": 2952730,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2602.18750v2.pdf",
+        "sha256": "14de02c67faa855c01bc5eb59a99594ba4cffc608f471cf2e452cea3f329eeaf"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2602.18750v2",
+      "primary_category": "cs.AR",
+      "published_at": "2026-02-21T08:19:59Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "HillInfer: Efficient Long-Context LLM Inference on the Edge with Hierarchical KV Eviction using SmartSSD",
+      "updated_at": "2026-03-25T06:46:30Z",
+      "version": 2
+    },
+    "2602.20515v1": {
+      "abs_url": "https://arxiv.org/abs/2602.20515v1",
+      "abstract": "In long-context large language model (LLM) inference, the prefill stage dominates computation due to self-attention over the complete input context. Sparse attention significantly reduces self-attention computation by limiting each token's interactions to a subset of tokens. The attention sparsity pattern varies across input prompts, and within a prompt, each attention head can follow a distinct pattern. This makes attention sparsity dynamic. The requirement of generating the sparsity pattern, combined with limited data reuse in attention, shifts the prefill compute to being memory-bound. This, in addition to the huge energy requirements for long-context inference on GPU, motivates FPGAs as good candidates for accelerating dynamic long-context inference. To tackle these challenges, we propose FAST-Prefill, the first FPGA accelerator for long-context prefill-stage inference with dynamic sparse attention. To efficiently generate sparse indices, we propose a \\textit{fused pipeline unit with a memory-aware execution order} to reduce large tensors and irregular memory accesses. To reduce off-chip memory traffic for accessing the KV cache, we utilize the memory hierarchy to design a \\textit{liveness-driven, dual-tier cache}. For high-throughput matrix multiplication, we design a \\textit{hybrid Matrix Processing Unit (MPU)} with DSPs and bit-plane decomposition using LUTs. We implement FAST-Prefill on Alveo U280 and evaluate it on the Llama and Qwen models (batch size = 1) for context lengths ranging from 4K to 128K tokens. We demonstrate an average speedup of up to 2.5$\\times$ in TTFT and 4.5$\\times$ improvement in energy efficiency over GPU implementation on Nvidia A5000 GPU.",
+      "arxiv_id": "2602.20515",
+      "authors": [
+        "Rakshith Jayanth",
+        "Viktor Prasanna"
+      ],
+      "cache": {
+        "byte_count": 401638,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2602.20515v1.pdf",
+        "sha256": "356b7b18b092d53cf6235515f2b465bf56631696b650d94ff4192cf623b62d96"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2602.20515v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-02-24T03:36:25Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "FAST-Prefill: FPGA Accelerated Sparse Attention for Long Context LLM Prefill",
+      "updated_at": "2026-02-24T03:36:25Z",
+      "version": 1
+    },
+    "2603.14785v1": {
+      "abs_url": "https://arxiv.org/abs/2603.14785v1",
+      "abstract": "Large language models (LLMs) have achieved remarkable performance across a wide range of tasks, but their inference efficiency remains a critical bottleneck due to rapidly growing parameters. Recent advances in dynamic computation allocation address this challenge by exploiting the highly uneven contributions of different tokens and layers, enabling selective execution that significantly reduces redundant computation while preserving model accuracy. However, existing hardware platforms and accelerators are primarily optimized for uniform, static execution, limiting their ability to efficiently support such dynamic inference patterns. In this work, we propose SkipOPU, an FPGA-based overlay processor that dynamically allocates computation across tokens and layers with high flexibility through a lightweight routing mechanism. First, we decouple reduction operations from element-wise computation in nonlinear modules and perform reductions incrementally, which enables both stages to be fused with adjacent linear operations (router or matrix multiplication) for effective latency hiding. Second, motivated by asymmetric sensitivity to numerical precision between activation and weight, we design a PE array that efficiently supports float-fixed hybrid execution. A novel DSP overpacking technique is introduced to maximize hardware utilization while minimizing resource overhead. Finally, we develop a proactive on-chip KV history buffer that exploits cross-layer KV invariance of pruned tokens, eliminating irregular HBM accesses during decoding and supplementing off-chip bandwidth through high-locality on-chip reuse. Experimental results demonstrate that SkipOPU on an AMD U280 FPGA outperforms GPU and other FPGA-based accelerators by 1.23x-3.83x in bandwidth efficiency for LLMs inference with dynamic computation allocation and can reduce up to 25.4% KV storage overhead across varying sequence lengths.",
+      "arxiv_id": "2603.14785",
+      "authors": [
+        "Zicheng He",
+        "Anhao Zhao",
+        "Xiaoyu Shen",
+        "Chen Wu",
+        "Lei He"
+      ],
+      "cache": {
+        "byte_count": 4824175,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2603.14785v1.pdf",
+        "sha256": "b06f4ef2507a7a9714e7a78e70352ffefa280e75e57220f6b79ec47640a31170"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2603.14785v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-03-16T03:35:04Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "SkipOPU: An FPGA-based Overlay Processor for Large Language Models with Dynamically Allocated Computation",
+      "updated_at": "2026-03-16T03:35:04Z",
+      "version": 1
+    },
+    "2603.23668v1": {
+      "abs_url": "https://arxiv.org/abs/2603.23668v1",
+      "abstract": "The rapid deployment of machine learning across platforms from milliwatt-class TinyML devices to large language models has made energy efficiency a primary constraint for sustainable AI. Across these scales, performance and energy are increasingly limited by data movement and memory-system behavior rather than by arithmetic throughput alone. This work reviews energy efficient software hardware codesign methods spanning edge inference and training to datacenter-scale LLM serving, covering accelerator architectures (e.g., ASIC/FPGA dataflows, processing-/compute-in-memory designs) and system-level techniques (e.g., partitioning, quantization, scheduling, and runtime adaptation). We distill common design levers and trade-offs, and highlight recurring gaps including limited cross-platform generalization, large and costly co-design search spaces, and inconsistent benchmarking across workloads and deployment settings. Finally, we outline a hierarchical decomposition perspective that maps optimization strategies to computational roles and supports incremental adaptation, offering practical guidance for building energy and carbon aware ML systems.",
+      "arxiv_id": "2603.23668",
+      "authors": [
+        "Mohammad Saleh Vahdatpour",
+        "Yanqing Zhang"
+      ],
+      "cache": {
+        "byte_count": 208045,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2603.23668v1.pdf",
+        "sha256": "c8aa883ca6baa7ed5fcd8c1c73c3f9c7469f59069fd6762cf080c901ac55f2e0"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2603.23668v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-03-24T19:10:42Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Energy Efficient Software Hardware CoDesign for Machine Learning: From TinyML to Large Language Models",
+      "updated_at": "2026-03-24T19:10:42Z",
+      "version": 1
+    },
+    "2603.28239v3": {
+      "abs_url": "https://arxiv.org/abs/2603.28239v3",
+      "abstract": "In-network computing techniques, exemplified by NVLink SHARP (NVLS), offer a promising approach to addressing the communication bottlenecks in LLM inference by offloading collective operations such as All-Reduce to switches. However, the accelerator-centric architecture of NVLS suffers from two fundamental limitations: 1) it relies on GPU load instructions to trigger in-switch reduction, which means that the data reduced in the switch must be transferred back to the initiating GPU rather than being broadcast directly, thereby introducing unnecessary communication overhead; 2) due to its architectural constraints, NVLS cannot offload operators that are not decomposable into memory-semantic instructions, such as the in-network quantization (INQ) proposed in this work. As a result, All-Reduce in NVLS during inference still operates at 16-bit precision, leading to substantial bandwidth waste. To address these limitations, we propose SCIN, the first switch-centric in-network architecture for multi-accelerator shared-memory networks, enabling both low-latency and high-bandwidth All-Reduce. Specifically, we introduce an in-switch accelerator (ISA) capable of directly accessing the memory regions in attached accelerators for in-network processing, together with a co-designed communication fabric that enables such access with negligible protocol overhead. SCIN delivers lower All-Reduce latency than NVLS by eliminating redundant data movement. Moreover, SCIN enables INQ for All-Reduce, reducing its precision to 8 bits and nearly doubling bandwidth with negligible accuracy loss. We also present a multi-FPGA prototype of SCIN to validate its feasibility and effectiveness. Simulation results for an 8-GPU system show that our design accelerates All-Reduce by up to 8.7x for small messages and 3.8x for large messages, yielding up to 1.74x TTFT speedup and 1.34x TPOT speedup on LLaMA-2 models.",
+      "arxiv_id": "2603.28239",
+      "authors": [
+        "Aojie Jiang",
+        "Kang Zhu",
+        "Zhiheng Zhang",
+        "Zhengxu Su",
+        "Juntao Liu",
+        "Yuan Du",
+        "Li Du"
+      ],
+      "cache": {
+        "byte_count": 2976825,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2603.28239v3.pdf",
+        "sha256": "5185b310fab06f7da3551c4b0f66e407940869b24e2d71b0ba955239a791ff2f"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2603.28239v3",
+      "primary_category": "cs.AR",
+      "published_at": "2026-03-30T09:59:11Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "A Switch-Centric In-Network Architecture for Accelerating LLM Inference in Shared-Memory Network",
+      "updated_at": "2026-04-08T07:25:22Z",
+      "version": 3
+    },
+    "2603.29002v3": {
+      "abs_url": "https://arxiv.org/abs/2603.29002v3",
+      "abstract": "Modern large language models (LLMs) increasingly depends on efficient long-context processing and generation mechanisms, including sparse attention, retrieval-augmented generation (RAG), and compressed contextual memory, to support complex reasoning. We show that these optimizations can be unified into a four-step memory processing pipeline: Prepare Memory, Compute Relevancy, Retrieval, and Apply to Inference. Through systematic profiling, we identify a 22%-97% memory processing overhead in LLM inference and strong heterogeneity in its computational characteristics. Motivated by this insight, we argue that \\textbf{heterogeneous systems} are well-suited to accelerate memory processing and thus end-to-end inference. We demonstrate this approach on a GPU-FPGA system by offloading sparse, irregular, and memory-bounded operations to FPGAs while retaining compute-intensive operations on GPUs. Evaluated on an AMD MI210 GPU and an Alveo U55C FPGA, our system is up to $2.2\\times$ faster and achieves up to $4.7\\times$ less energy across multiple LLM inference optimizations than the GPU baseline (similar results hold on NVIDIA A100). These results establish heterogeneous systems as a practical direction for efficient LLM memory processing and inform future heterogeneous hardware design.",
+      "arxiv_id": "2603.29002",
+      "authors": [
+        "Zifan He",
+        "Rui Ma",
+        "Yizhou Sun",
+        "Jason Cong"
+      ],
+      "cache": {
+        "byte_count": 3594462,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2603.29002v3.pdf",
+        "sha256": "f34c5eeb201a05888db9b02db4ed4675d1b68e8452b7ebe09df9aa96667a8af8"
+      },
+      "categories": [
+        "cs.DC",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2603.29002v3",
+      "primary_category": "cs.DC",
+      "published_at": "2026-03-30T21:03:39Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Understand and Accelerate Memory Processing Pipeline for Large Language Model Inference",
+      "updated_at": "2026-05-30T00:45:53Z",
+      "version": 3
+    },
+    "2605.05170v1": {
+      "abs_url": "https://arxiv.org/abs/2605.05170v1",
+      "abstract": "Driven by a rapid co-evolution of both harness and underlying models, LLM agents are improving at a dizzying pace. In our prior work (performed in Dec. 2025), we introduced \"Design Conductor\" (or just \"Conductor\"), a system capable of building a 5-stage Linux-capable RISC-V CPU in 12 hours. In this work, we introduce an updated multi-agent harness powered by frontier models released in April 2026, which is able to handle 80x larger tasks, at higher quality, fully autonomously. Following a brief introduction, we examine 4 designs that the system produced autonomously, including \"VerTQ\", an LLM inference accelerator which hard-wires support for TurboQuant in a 240-cycle pipeline, starting from the TurboQuant arXiv paper. VerTQ includes heavy compute processing, with 5129 FP16/32 units; the design was mapped to an FPGA at 125 MHz and consumes 5.7 mm^2 in TSMC 16FF (8 attention pipes). We review the key new characteristics that enabled these results. Finally, we analyze Design Conductor's token usage and other empirical characteristics, including its limitations.",
+      "arxiv_id": "2605.05170",
+      "authors": [
+        "The Verkor Team",
+        "Ravi Krishna",
+        "Suresh Krishna",
+        "David Chin"
+      ],
+      "cache": {
+        "byte_count": 3223790,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2605.05170v1.pdf",
+        "sha256": "4066a9d1063ab6648e4ad7de63bb591ef065876727fdaa77fcc8effe2d2a829b"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.AI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2605.05170v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-05-06T17:40:03Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Design Conductor 2.0: An agent builds a TurboQuant inference accelerator in 80 hours",
+      "updated_at": "2026-05-06T17:40:03Z",
+      "version": 1
+    },
+    "2605.06052v1": {
+      "abs_url": "https://arxiv.org/abs/2605.06052v1",
+      "abstract": "The widespread adoption of mixed-precision quantization in large language models (LLMs) has created demand for hardware that can efficiently perform multiply-accumulate (MAC) operations across mixed datatypes and switch datatypes at runtime. Existing FPGA-based MAC solutions fall short due to limitations in fixed-datatype design, inefficient spatial or temporal resource sharing, and poor support for mixed-precision execution. These limitations collectively lead to under-utilization of DSP resources, limiting achievable parallelism and throughput. In this work, we present XtraMAC, a novel MAC architecture that unifies integer, floating-point, and mixed-precision operations within a single, datatype-adaptive microarchitecture. XtraMAC decomposes all supported MAC formats into a shared integer mantissa product with lightweight sign and exponent handling, enabling dynamic operand packing and efficient DSP resource sharing with constant latency and initiation interval of one across all datatypes. Evaluated on an AMD Xilinx U55c FPGA, XtraMAC achieves 1.4-2.0x higher compute density, reduces per-operation LUT, FF, and DSP consumption by 27-51%, and delivers up to 1.9x greater energy efficiency and 1.2x speedup on representative mixed-precision LLM workloads. The implementation of XtraMAC is open-sourced at https://github.com/Xtra-Computing/XtraMAC.",
+      "arxiv_id": "2605.06052",
+      "authors": [
+        "Feng Yu",
+        "Hongshi Tan",
+        "Yao Chen",
+        "Weng-Fai Wong",
+        "Bingsheng He"
+      ],
+      "cache": {
+        "byte_count": 1319487,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2605.06052v1.pdf",
+        "sha256": "e44b845e218984c129a21b5da62b02f5d26cc0b3e8292453c0b0a8dddfe0d75e"
+      },
+      "categories": [
+        "cs.AR"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2605.06052v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-05-07T11:37:52Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "XtraMAC: An Efficient MAC Architecture for Mixed-Precision LLM Inference on FPGA",
+      "updated_at": "2026-05-07T11:37:52Z",
+      "version": 1
+    },
+    "2606.12556v2": {
+      "abs_url": "https://arxiv.org/abs/2606.12556v2",
+      "abstract": "The rapid shift toward agentic and long-context workloads in Large Language Models (LLMs) is pushing the industry beyond the capacity of individual servers toward disaggregated shared storage to handle TB-scale context states. This movement has led to the emergence of specialized shared context layers designed to externalize and share cumulative inference states across distributed clusters. While offloading to a data processing unit (DPU) within just-a-bunch-of-flash (JBOF) architectures accelerates NVMe-over-fabrics (NVMe-oF) target processing, the need for sophisticated software-level optimization and cost-efficiency burdens remain significant. Consequently, the ideal architecture for scaling this shared context infrastructure is still an active area of exploration. In this paper, we propose ITME (Inference Tiered Memory Expansion), which leverages a CXL-hybrid memory to present a massive, TB-scale byte-addressable remote memory expansion. This approach enables cost-efficient scaling and simplifies the software stack through direct byte-addressability, effectively addressing the challenges of shared context infrastructure. Our key insight is that the deterministic access patterns of voluminous model weights and prefix caches enable the system to proactively manage data movement across the memory-storage hierarchy. We validate ITME by evaluating its performance potential with production-grade SK Hynix CMM and PCIe Gen5 NVMe SSDs, while further demonstrating its functional feasibility through an FPGA-based hardware prototype. Overall, ITME enhances conventional CPU-offloading by providing additional remote memory expansion to accommodate large KV cache footprints beyond host memory limits, achieving up to a 35.7\\% throughput improvement.",
+      "arxiv_id": "2606.12556",
+      "authors": [
+        "Hakbeom Jang",
+        "Younghoon Min",
+        "Sunwoong Kim",
+        "Taeyoung Ahn",
+        "Hanyee Kim",
+        "Youngpyo Joo",
+        "Hoshik Kim",
+        "Jongryool Kim"
+      ],
+      "cache": {
+        "byte_count": 2879868,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2606.12556v2.pdf",
+        "sha256": "c8f29ee52bfaef00bd2b26bf2e71e49eda394d6e85b7fc9975fa5fd9a24a94d7"
+      },
+      "categories": [
+        "cs.DC"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2606.12556v2",
+      "primary_category": "cs.DC",
+      "published_at": "2026-06-10T18:06:30Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "ITME: Inference Tiered Memory Expansion with Disaggregated CXL-Hybrid Memories",
+      "updated_at": "2026-06-16T05:18:15Z",
+      "version": 2
+    },
+    "2606.13708v1": {
+      "abs_url": "https://arxiv.org/abs/2606.13708v1",
+      "abstract": "RDMA one-sided verbs are the natural primitive for memory disaggregation, but they require the client to supply the exact remote address. The 1-RTT performance breaks down when the target address depends on data that must first be read from remote memory, a pattern we call the Indirection Wall. Indirection is pervasive: graph traversals follow pointers hop by hop, address translation walks multi-level page tables, distributed coordination requires conditional multi-host logic, and disaggregated LLM inference must resolve paged KV caches through block-table lookups. Each level of indirection costs one sequentially dependent network round-trip, yet offloading to existing RDMA NICs either consumes remote CPU cycles or has limited throughput. We present Tiara, a compact, statically verifiable instruction set that executes on the memory-side NIC. Tiara operators are pre-registered programs, analogous to eBPF programs in the kernel, that resolve indirection locally, collapsing multi-RTT dependent chains into a single round-trip. On an FPGA-based prototype, Tiara reduces 10-hop graph-traversal latency by 2.85x over one-sided RDMA while sustaining 3.4x higher throughput, cuts page-table walk latency by 62%, reduces uncontended distributed-lock latency by 2.9x, achieves 2.8x throughput for disaggregated PagedAttention at 8 KB blocks, and 1.88x MoE expert-gather latency at 32 experts.",
+      "arxiv_id": "2606.13708",
+      "authors": [
+        "Bojie Li"
+      ],
+      "cache": {
+        "byte_count": 682551,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2606.13708v1.pdf",
+        "sha256": "1cdbb3638e32a2b9fdebcc0a004023e63c3654e3e362e4f0aaf4bfa369553b05"
+      },
+      "categories": [
+        "cs.AR",
+        "cs.NI"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2606.13708v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-06-10T05:01:17Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Tiara: A Programmable Line-Rate ISA for Remote Memory Access",
+      "updated_at": "2026-06-10T05:01:17Z",
+      "version": 1
+    },
+    "2606.22621v1": {
+      "abs_url": "https://arxiv.org/abs/2606.22621v1",
+      "abstract": "Building on resistive communication, this paper presents a physics-based design of an on-chip neural network with multi-level memristive synapses supporting a dense spectrum of conductance states. Derived from ionic transport physics, we develop a state-variable model and quantify storable sub-levels under thermal noise, drift, and quantized conductance. We assemble these devices into a 1T1R crossbar fabric, derive the linear algebra of analog vector-matrix multiplication (VMM) under wire resistance, and design a differential synapse for signed weights. A multilayer pipeline executes inference, backpropagation, and weight updates physically in the analog domain. We derive the in-situ outer-product learning rule, its discretization onto the conductance lattice, and the resulting quantization noise. We provide energy, area, capacity, and inter-tile models, showing this substrate is ideally suited for large language models (LLMs). Our design eliminates weight movement, surpassing binary ReRAM and traditional CMOS. We detail the material stack (HfO_2-based), the FEOL/BEOL CMOS foundry-integration flow, a self-contained SPICE model, the complete memristive-FPGA neuromorphic system, and an in-memory self-attention engine with current-mode translinear softmax. Finally, a ternary BitNet datapath shows projected per-token efficiency orders of magnitude better than advanced CPUs or GPUs. The result is a self-contained hardware-native blueprint for a high-density, analog, in-memory neural processor.",
+      "arxiv_id": "2606.22621",
+      "authors": [
+        "David Alejandro Trejo Pizzo"
+      ],
+      "cache": {
+        "byte_count": 685997,
+        "downloaded_at": "2026-07-16T16:16:50.296567Z",
+        "filename": "2606.22621v1.pdf",
+        "sha256": "4fd6fe2db6db542b20231ce537a413092d721c4fab21fe7851f3945b5c39a25c"
+      },
+      "categories": [
+        "cs.AR",
+        "cond-mat.mes-hall",
+        "cs.ET",
+        "cs.NE",
+        "physics.app-ph"
+      ],
+      "doi": null,
+      "journal_ref": null,
+      "license_url": null,
+      "pdf_url": "https://arxiv.org/pdf/2606.22621v1",
+      "primary_category": "cs.AR",
+      "published_at": "2026-06-21T18:04:51Z",
+      "query_ids": [
+        "llm-inference-fpga-v1"
+      ],
+      "retrieved_at": "2026-07-16T16:16:37.036963Z",
+      "title": "Multi-Level Resistive Synapses for On-Chip Neural Networks: A Physics-Based Design of a Memristive Crossbar Fabric with Quasi-Continuous Conductance States",
+      "updated_at": "2026-06-21T18:04:51Z",
+      "version": 1
+    }
+  },
+  "query_id": "llm-inference-fpga-v1",
+  "schema_version": 1
+}
