@@ -15,6 +15,7 @@ class QueryConfig:
     cron_hour: int
     cron_minute: int
     user_agent: str
+    supplemental_queries: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)

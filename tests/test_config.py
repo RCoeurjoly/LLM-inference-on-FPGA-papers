@@ -17,7 +17,8 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(config.query_id, "llm-inference-fpga-v1")
         self.assertEqual(config.page_size, 100)
         self.assertEqual(config.min_api_interval_seconds, 3.0)
-        self.assertIn("ti:LLM", config.base_query)
+        self.assertIn("all:LLM", config.base_query)
+        self.assertGreaterEqual(len(config.supplemental_queries), 4)
 
     def test_rejects_missing_required_keys(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import json
+from dataclasses import MISSING
 from pathlib import Path
 
 from paperlib.models import QueryConfig
 
 
-REQUIRED_KEYS = frozenset(QueryConfig.__dataclass_fields__)
+REQUIRED_KEYS = frozenset(
+    name for name, field in QueryConfig.__dataclass_fields__.items()
+    if field.default is MISSING and field.default_factory is MISSING
+)
 
 
 def load_config(path: Path) -> QueryConfig:
@@ -38,4 +42,14 @@ def load_config(path: Path) -> QueryConfig:
     if not isinstance(data["cron_minute"], int) or not 0 <= data["cron_minute"] <= 59:
         raise ValueError("cron_minute must be between 0 and 59")
 
-    return QueryConfig(**{key: data[key] for key in REQUIRED_KEYS})
+    supplemental = data.get("supplemental_queries", [])
+    if not isinstance(supplemental, list):
+        raise ValueError("supplemental_queries must be a list")
+    parsed: list[tuple[str, str]] = []
+    for item in supplemental:
+        if not isinstance(item, dict) or not isinstance(item.get("query_id"), str) or not isinstance(item.get("base_query"), str):
+            raise ValueError("each supplemental query needs query_id and base_query")
+        parsed.append((item["query_id"], item["base_query"]))
+    values = {key: data[key] for key in REQUIRED_KEYS}
+    values["supplemental_queries"] = tuple(parsed)
+    return QueryConfig(**values)

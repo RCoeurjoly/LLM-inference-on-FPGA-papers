@@ -131,7 +131,7 @@ class CollectorTests(unittest.TestCase):
             )
 
             self.assertEqual(set(result), {"2401.12345v1", "2401.12345v2"})
-            self.assertEqual(len(client.calls), 3)
+            self.assertEqual(len(client.calls), 7)
             self.assertNotEqual(client.calls[1][0], client.calls[2][0])
 
     def test_sync_does_not_advance_watermark_when_rendering_fails(self) -> None:

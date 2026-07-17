@@ -97,6 +97,13 @@ def _fetch_window(
     return [replace(paper, query_ids=(config.query_id,)) for paper in papers]
 
 
+def _query_configs(config: QueryConfig) -> tuple[QueryConfig, ...]:
+    return (config,) + tuple(
+        replace(config, query_id=query_id, base_query=base_query)
+        for query_id, base_query in config.supplemental_queries
+    )
+
+
 def _write_outputs(
     repo_root: Path,
     config: QueryConfig,
@@ -134,9 +141,11 @@ def bootstrap_all(
     """Discover every matching submission from arXiv's historical range."""
     now = _as_utc(now)
     config = load_config(repo_root / "config/query.json")
-    incoming = _fetch_window(
-        client, config, "submittedDate", ARXIV_START, now, "submittedDate"
-    )
+    incoming: list[PaperVersion] = []
+    for query_config in _query_configs(config):
+        incoming.extend(_fetch_window(
+            client, query_config, "submittedDate", ARXIV_START, now, "submittedDate"
+        ))
     merged = merge_papers(load_catalog(repo_root / "data/catalog.json"), {
         paper.key: paper for paper in incoming
     })
@@ -166,9 +175,11 @@ def sync_recent(
     start_at = (
         _parse_rfc3339(watermark) if watermark is not None else now
     ) - timedelta(hours=config.daily_overlap_hours)
-    incoming = _fetch_window(
-        client, config, "lastUpdatedDate", start_at, now, "lastUpdatedDate"
-    )
+    incoming: list[PaperVersion] = []
+    for query_config in _query_configs(config):
+        incoming.extend(_fetch_window(
+            client, query_config, "lastUpdatedDate", start_at, now, "lastUpdatedDate"
+        ))
     merged = merge_papers(load_catalog(repo_root / "data/catalog.json"), {
         paper.key: paper for paper in incoming
     })

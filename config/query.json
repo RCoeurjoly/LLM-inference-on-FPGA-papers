@@ -2,7 +2,13 @@
   "schema_version": 1,
   "query_id": "llm-inference-fpga-v1",
   "api_url": "https://export.arxiv.org/api/query",
-  "base_query": "(ti:LLM OR abs:LLM OR ti:LLMs OR abs:LLMs OR ti:\"large language model\" OR abs:\"large language model\" OR ti:\"large language models\" OR abs:\"large language models\") AND (ti:inference OR abs:inference) AND (ti:FPGA OR abs:FPGA)",
+  "base_query": "(all:LLM OR all:LLMs OR all:\"large language model\" OR all:\"large language models\") AND all:FPGA",
+  "supplemental_queries": [
+    {"query_id": "llm-fpga-rtl-v1", "base_query": "(all:LLM OR all:LLMs OR all:\"large language model\" OR all:\"large language models\") AND all:FPGA AND (all:RTL OR all:Verilog OR all:SystemVerilog OR all:VHDL OR all:Chisel OR all:HLS)"},
+    {"query_id": "llm-fpga-compiler-v1", "base_query": "(all:LLM OR all:LLMs OR all:\"large language model\" OR all:\"large language models\") AND all:FPGA AND (all:PyTorch OR all:MLIR OR all:torch-mlir OR all:compiler OR all:compilation OR all:dataflow)"},
+    {"query_id": "llm-fpga-operator-v1", "base_query": "(all:LLM OR all:LLMs OR all:\"large language model\" OR all:\"large language models\") AND all:FPGA AND (all:attention OR all:Softmax OR all:exponential OR all:exponentiation OR all:GELU OR all:normalization)"},
+    {"query_id": "transformer-fpga-v1", "base_query": "(all:transformer OR all:\"language model\" OR all:LLM) AND all:FPGA"}
+  ],
   "page_size": 100,
   "min_api_interval_seconds": 3.0,
   "daily_overlap_hours": 72,
